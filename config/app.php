@@ -148,7 +148,7 @@ return [
         /*
          * Packages Service Provider
          */
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider:class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
     ],
 
     /*
