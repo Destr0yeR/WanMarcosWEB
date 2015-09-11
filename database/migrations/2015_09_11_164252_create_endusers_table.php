@@ -32,6 +32,6 @@ class CreateEndusersTable extends Migration
     public function down()
     {
         //
-        Schema::drop('enduses');
+        Schema::drop('endusers');
     }
 }
