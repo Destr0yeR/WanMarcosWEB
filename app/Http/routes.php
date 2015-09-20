@@ -17,6 +17,11 @@ Route::get('/', function () {
 
 Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
     Route::group(['prefix' => 'v1'], function(){
-       Route::resource('users', 'User\UserController'); 
+
+        Route::get('users/verify/{token?}', 'User\UserController@verify');
+        Route::resource('users', 'User\UserController'); 
+
+        Route::post('authenticate', 'Auth\AuthController@authenticate');
     });
+
 });
