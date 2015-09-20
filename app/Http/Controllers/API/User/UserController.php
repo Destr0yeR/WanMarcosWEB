@@ -13,6 +13,8 @@ use App\Repositories\EndUserRepository;
 use App\Services\Notification\VerificationMailNotifier;
 
 use JWTAuth;
+use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
+
 
 class UserController extends Controller
 {
@@ -107,5 +109,21 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function verify($token = null){
+        if (is_null($token)) {
+            throw new NotFoundHttpException;
+        }
+        $message = "Your email was verified!!";
+        try {
+            $user = JWTAuth::toUser($token);
+            JWTAuth::invalidate($token);
+        }
+        catch(TokenBlacklistedException $e){
+            $message = "Token already used";
+        }
+
+        return view('API.auth.verify')->with('message', $message);
     }
 }
