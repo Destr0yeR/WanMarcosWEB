@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'user' => 'App\User',
+    'user' => 'App\Models\EndUser',
 
     /*
     |--------------------------------------------------------------------------
@@ -147,7 +147,7 @@ return [
         */
 
         'auth' => function ($app) {
-            return new Tymon\JWTAuth\Providers\Auth\IlluminateAuthAdapter($app['auth']);
+            return new Tymon\JWTAuth\Providers\Auth\IlluminateAuthAdapter($app['endUserAuth']);
         },
 
         /*

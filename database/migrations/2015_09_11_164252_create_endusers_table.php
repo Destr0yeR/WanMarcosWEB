@@ -20,6 +20,7 @@ class CreateEndusersTable extends Migration
             $table->string('last_name');
             $table->string('email');
             $table->string('password');
+            $table->tinyInteger('initial_setup');
             $table->timestamps();
         });
     }

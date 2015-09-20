@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\API\Auth\EndUserAuthManager;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,5 +25,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $auth = new  EndUserAuthManager($this->app);
+
+        $this->app->instance('endUserAuth', $auth);
+
+        $this->app->bind('App\Services\RequestInterface', 'App\Services\CurlRequest');
     }
 }
