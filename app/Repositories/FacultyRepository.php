@@ -2,7 +2,7 @@
 
 namespace Repositories;
 
-class UserRepository {
+class FacultyRepository {
     public function __construct() {
         
     }

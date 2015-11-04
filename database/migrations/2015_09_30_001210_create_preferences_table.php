@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDevicesTable extends Migration
+class CreatePreferencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateDevicesTable extends Migration
     public function up()
     {
         //
-        Schema::create('devices', function(Blueprint $table){
-            $table->string('token');
-            $table->string('platform');
+        Schema::create('preferences', function(Blueprint $table){
+            $table->increments('id');
+
             $table->integer('enduser_id')->unsigned();
+
+            $table->timestamps();
         });
 
-        Schema::table('devices', function(Blueprint $table){
+        Schema::table('preferences', function(Blueprint $table){
             $table  ->foreign('enduser_id')->references('id')
                     ->on('endusers')->onDelete('cascade');
         });
@@ -33,10 +35,10 @@ class CreateDevicesTable extends Migration
     public function down()
     {
         //
-        Schema::table('devices', function(Blueprint $table){
-            $table->dropForeign('devices_enduser_id_foreign');
+        Schema::table('preferences', function(Blueprint $table){
+            $table->dropForeign('preferences_enduser_id_foreign');
         });
 
-        Schema::drop('devices');
+        Schema::drop('preferences');
     }
 }

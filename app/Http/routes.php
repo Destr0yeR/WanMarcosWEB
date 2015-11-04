@@ -22,6 +22,8 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
         Route::resource('users', 'User\UserController'); 
 
         Route::post('authenticate', 'Auth\AuthController@authenticate');
+
+        Route::resource('events', 'Event\EventController');
     });
 
 });
