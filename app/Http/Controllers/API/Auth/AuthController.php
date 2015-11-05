@@ -28,7 +28,7 @@ class AuthController extends Controller
                         'code' => 2,
                         'description' => 'error_alert'
                     ]
-                ], 400);
+                ], 401);
             }
         } catch (JWTException $e) {
             return response()->json(
