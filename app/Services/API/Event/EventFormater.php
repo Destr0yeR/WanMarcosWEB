@@ -59,9 +59,9 @@ class EventFormater implements Formater
         ];
 
         if($event->image){
-            $_event['image_url'] = asset($event->image);
+            $_event['image'] = asset($event->image);
         }
-        else $_event['image_url'] = null;
+        else $_event['image'] = null;
 
         return $_event;
     }
