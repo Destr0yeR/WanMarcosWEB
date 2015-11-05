@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Repositories\ProfessorRepository;
+use App\Repositories\EndUserRepository;
+
+use App\Http\Requests\API\Professor\GetProfessorsRequest;
+
 class ProfessorController extends Controller
 {
     /**
@@ -14,9 +19,32 @@ class ProfessorController extends Controller
      *
      * @return Response
      */
-    public function index()
+
+    public function __construct(){
+        $this->professor_repository = new ProfessorRepository;
+        $this->user_repository      = new EndUserRepository;
+    }
+
+    public function index(GetProfessorsRequest $request)
     {
         //
+        $preferences = $this->user_repository->getPreferences();
+
+        $filters = [
+            'preferences'   => $preferences,
+            'search_text'   => $request->input('search_text', '')
+        ];
+
+        $page       = $request->input('page', 1);
+        $per_page   = $request->input('per_page', config('constants.per_page'));
+
+        $professors = $this->professor_repository->getAllPaginated($filters, $page, $per_page);
+
+        $response = [
+            'professors'    => $professors
+        ];
+
+        return response()->json($response, 200);
     }
 
     /**

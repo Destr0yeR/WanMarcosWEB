@@ -59,6 +59,7 @@ class EventFormater implements Formater
     public function formatItem($event){
 
         $_event = [
+            'id'        => $event->id,
             'title'     => $event->name,
             'starts_at' => $event->starts_at,
             'ends_at'   => $event->ends_at

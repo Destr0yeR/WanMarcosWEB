@@ -6,4 +6,6 @@ class ProfessorRepository {
     public function __construct() {
         
     }
+
+    
 }

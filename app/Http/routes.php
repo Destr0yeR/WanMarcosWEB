@@ -23,6 +23,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
 
         Route::post('authenticate', 'Auth\AuthController@authenticate');
 
+        Route::resource('professors', 'Professor\ProfessorController');
         Route::resource('events', 'Event\EventController');
 
         Route::group(['prefix' => 'autocomplete'], function(){
