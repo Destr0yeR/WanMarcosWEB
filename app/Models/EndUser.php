@@ -12,4 +12,8 @@ class EndUser extends Model implements AuthenticatableContract {
     
     protected $table = 'endusers';
     protected $hidden = ['password'];
+
+    public function preferences(){
+        return $this->hasMany('App\Models\Preference', 'enduser_id');
+    }
 }

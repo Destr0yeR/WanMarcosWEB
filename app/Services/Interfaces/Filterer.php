@@ -1,7 +1,9 @@
 <?php
 
+namespace App\Services\Interfaces;
+
 interface Filterer{
 
-    public function filter();
-    public function filterAutocomplete();
+    public function filter($model, $filters);
+    public function filterAutocomplete($model, $search_text);
 }

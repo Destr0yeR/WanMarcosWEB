@@ -1,9 +1,9 @@
 <?php
 
-namespace Services\Interfaces;
+namespace App\Services\Interfaces;
 
 interface Formater{
-    public function format();
-    public function formatDetail();
-    public function formatItem();
+    public function format($collection);
+    public function formatDetail($object);
+    public function formatItem($object);
 }

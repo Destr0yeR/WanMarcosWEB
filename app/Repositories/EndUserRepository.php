@@ -2,9 +2,18 @@
 
 namespace App\Repositories;
 
+use App\Services\API\Auth\AuthService;
+use App\Services\API\User\PreferenceFormater;
+
 use App\Models\EndUser;
 
 class EndUserRepository{
+
+    public function __construct(){
+        $this->auth_service = new AuthService;
+        $this->preference_formater = new PreferenceFormater;
+    }
+
     public function storeEndUser(array $data, $device_id, $operating_system)
     {
         $user = new EndUser();
@@ -16,5 +25,13 @@ class EndUserRepository{
         $user->save();
 
         return $user;
+    }
+
+    public function getPreferences(){
+        $user = $this->auth_service->getUser();
+
+        $preferences = $user->preferences;
+
+        return $this->preference_formater->format($preferences);
     }
 }

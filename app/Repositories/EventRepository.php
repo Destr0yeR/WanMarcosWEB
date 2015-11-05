@@ -1,9 +1,9 @@
 <?php
 
-namespace Repositories;
+namespace App\Repositories;
 
-use App\Services\Event\EventFormater;
-use App\Services\Event\EventFilterer;
+use App\Services\API\Event\EventFormater;
+use App\Services\API\Event\EventFilterer;
 
 use App\Models\Event;
 
@@ -34,5 +34,20 @@ class EventRepository {
         $events = $this->filterer->filterAutocomplete($model, $search_text)->take($max_items)->get();
 
         return $this->formater->formatAutocomplete($vents);
+    }
+
+    public function store($data){
+        $event = new Event;
+
+        foreach ($data as $key => $value) {
+            $event->$key = $value;
+        }
+
+        $event->save();
+
+        $event->image       = asset($event->image);
+        $event->information = asset($event->information);
+
+        return $event;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Services\API\Event;
 
-use Services\Interfaces\Formater;
+use App\Services\Interfaces\Formater;
 
 class EventFormater implements Formater
 {
@@ -21,10 +21,15 @@ class EventFormater implements Formater
 
         $_event['description']  = $event->description;
         $_event['website']      = asset($event->website);
-        $_event['information']  = asset($event->information);
+
+        if($event->information){
+            $_event['information']  = asset($event->information);
+        }
+        else $_event['information']  = null;
 
         if($event->place){
-            $place = $event->place
+            $place = $event->place;
+
             $_event['place'] = [
                 'id'    => $place->id,
                 'name'  => $place->name,
@@ -45,14 +50,18 @@ class EventFormater implements Formater
         }
     }
 
-    private function formatItem($event){
+    public function formatItem($event){
 
         $_event = [
             'title'     => $event->name,
-            'image_url' => asset($event->image),
             'starts_at' => $event->starts_at,
             'ends_at'   => $event->ends_at
         ];
+
+        if($event->image){
+            $_event['image_url'] = asset($event->image);
+        }
+        else $_event['image_url'] = null;
 
         return $_event;
     }

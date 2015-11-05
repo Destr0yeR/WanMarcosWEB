@@ -21,6 +21,8 @@ class CreateEventsTable extends Migration
             $table->string('image');
             $table->string('website');
             $table->string('information');
+
+            $table->tinyInteger('approved')->default(0);
             
             $table->integer('place_id')->unsigned()->nullable();
 
