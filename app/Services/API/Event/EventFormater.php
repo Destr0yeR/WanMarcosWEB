@@ -20,7 +20,11 @@ class EventFormater implements Formater
         $_event = $this->formatItem($event);
 
         $_event['description']  = $event->description;
-        $_event['website']      = asset($event->website);
+
+        if($event->website){
+            $_event['website'] = $event->website;
+        }
+        else $_event['website'] = null; 
 
         if($event->information != ''){
             $_event['information']  = asset($event->information);

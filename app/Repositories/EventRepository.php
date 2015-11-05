@@ -45,8 +45,8 @@ class EventRepository {
 
         $event->save();
 
-        $event->image       = asset($event->image);
-        $event->information = asset($event->information);
+        if($event->image)       $event->image       = asset($event->image);
+        if($event->information) $event->information = asset($event->information);
 
         return $event;
     }
