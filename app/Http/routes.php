@@ -24,6 +24,10 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
         Route::post('authenticate', 'Auth\AuthController@authenticate');
 
         Route::resource('events', 'Event\EventController');
+
+        Route::group(['prefix' => 'autocomplete'], function(){
+            Route::get('events', 'Event\EventController@autocomplete');
+        });
     });
 
 });

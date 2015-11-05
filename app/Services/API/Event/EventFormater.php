@@ -52,6 +52,8 @@ class EventFormater implements Formater
                 'title' => $event->name
             ];
         }
+
+        return $_events;
     }
 
     public function formatItem($event){

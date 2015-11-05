@@ -16,6 +16,7 @@ class EventFilterer implements Filterer{
     }
 
     public function filterAutocomplete($model, $search_text){
+        $search_text = '%'.$search_text.'%';
         return $this->filterByName($model, $search_text);
     }
 

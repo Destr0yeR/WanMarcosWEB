@@ -11,7 +11,7 @@ use App\Repositories\EventRepository;
 use App\Repositories\EndUserRepository;
 
 use App\Http\Requests\API\Event\GetEventsRequest;
-use App\Http\Requests\API\Event\AutocompleteEventRequest;
+use App\Http\Requests\API\Event\AutocompleteEventsRequest;
 use App\Http\Requests\API\Event\StoreEventRequest;
 
 use App\Services\Util\FileService;
@@ -154,8 +154,8 @@ class EventController extends Controller
         //
     }
 
-    public function autocomplete(AutocompleteEventRequest $request){
-        $search_text = $request->input('search_text');
+    public function autocomplete(AutocompleteEventsRequest $request){
+        $search_text = $request->input('search_text', '');
         $max_items   = $request->input('max_items', config('constants.autocomplete_items'));
 
         $events = $this->event_repository->getAutocomplete($search_text, $max_items);
@@ -164,6 +164,6 @@ class EventController extends Controller
             'events'    => $events
         ];
 
-        return $response()->json($response, 200);
+        return response()->json($response, 200);
     }
 }

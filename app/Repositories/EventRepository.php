@@ -32,8 +32,8 @@ class EventRepository {
         $model = Event::distinct();
 
         $events = $this->filterer->filterAutocomplete($model, $search_text)->take($max_items)->get();
-
-        return $this->formater->formatAutocomplete($vents);
+        
+        return $this->formater->formatAutocomplete($events);
     }
 
     public function store($data){
