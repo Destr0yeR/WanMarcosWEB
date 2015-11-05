@@ -22,7 +22,7 @@ class EventFormater implements Formater
         $_event['description']  = $event->description;
         $_event['website']      = asset($event->website);
 
-        if($event->information){
+        if($event->information != ''){
             $_event['information']  = asset($event->information);
         }
         else $_event['information']  = null;
@@ -58,7 +58,7 @@ class EventFormater implements Formater
             'ends_at'   => $event->ends_at
         ];
 
-        if($event->image){
+        if($event->image != ''){
             $_event['image'] = asset($event->image);
         }
         else $_event['image'] = null;
