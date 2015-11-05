@@ -11,7 +11,6 @@ use App\Http\Requests\API\User\PostUsersRequest;
 use App\Repositories\EndUserRepository;
 
 use App\Services\Notification\VerificationMailNotifier;
-use App\Services\API\Auth\AuthService;
 
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
@@ -27,7 +26,6 @@ class UserController extends Controller
     public function __construct(){
         $this->user_repository              = new EndUserRepository;
         $this->verification_mail_notifier   = new VerificationMailNotifier;
-        $this->auth_service                 = new AuthService;
     }
 
     public function index()
@@ -131,7 +129,7 @@ class UserController extends Controller
 
     public function profile()
     {
-        $user = $this->auth_service->getUser();
+        $user = $this->user_repository->getAuthenticatedUser();
 
         return response()->json($user);
     }
