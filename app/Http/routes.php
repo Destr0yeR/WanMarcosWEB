@@ -17,10 +17,12 @@ Route::get('/', function () {
 
 Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
     Route::group(['prefix' => 'v1'], function(){
+
         Route::get('users/me', 'User\UserController@profile');
-        
         Route::get('users/verify/{token?}', 'User\UserController@verify');
+
         Route::resource('users', 'User\UserController'); 
+        Route::resource('suggestions', 'User\SuggestionController'); 
 
         Route::post('authenticate', 'Auth\AuthController@authenticate');
 
