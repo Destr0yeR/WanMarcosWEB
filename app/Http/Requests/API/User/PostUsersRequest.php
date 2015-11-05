@@ -43,6 +43,6 @@ class PostUsersRequest extends Request
                 'code' => 1,
                 'description' => 'error_alert'
                 ]
-        ], 200);
+        ], 400);
     }
 }
