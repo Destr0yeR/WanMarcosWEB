@@ -1,1 +1,1 @@
-Click here to verify your email address: {{ url('api/v1/users/verify/'.$token) }}
+Haz click en aquí para verificar tu dirección de correo electrónico: {{ url('api/v1/users/verify/'.$token) }}

@@ -31,7 +31,16 @@ class StoreEventRequest extends Request
         ];
     }
 
-    public function response(array $errors){
-        return response()->json(['errors' => $errors], 400);
+    public function response(array $errors)
+    {
+        return response()->json([
+            'error' => [
+                'message' => 'Invalid data',
+                'reason' => $errors,
+                'suggestion' => 'Try again with valid data',
+                'code' => 4,
+                'description' => 'error_alert'
+                ]
+        ], 400);
     }
 }
