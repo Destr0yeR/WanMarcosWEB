@@ -31,6 +31,8 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
 
         Route::group(['prefix' => 'autocomplete'], function(){
             Route::get('events', 'Event\EventController@autocomplete');
+            Route::get('degrees', 'Degree\DegreeController@autocomplete');
+            Route::get('faculties', 'Faculty\FacultyController@autocomplete');
         });
     });
 
