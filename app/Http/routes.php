@@ -41,6 +41,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
         Route::resource('suggestions', 'User\SuggestionController'); 
 
         Route::post('authenticate', 'Auth\AuthController@authenticate');
+        Route::post('refresh', 'Auth\AuthController@refresh');
 
         Route::resource('professors', 'Professor\ProfessorController');
         Route::resource('events', 'Event\EventController');
