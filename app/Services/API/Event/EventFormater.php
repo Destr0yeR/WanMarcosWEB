@@ -39,6 +39,7 @@ class EventFormater implements Formater
                 'name'  => $place->name,
             ];
         }
+        else $_event['place'] = null;
 
         return $_event;
     }

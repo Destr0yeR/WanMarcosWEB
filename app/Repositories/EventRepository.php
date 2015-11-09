@@ -70,4 +70,10 @@ class EventRepository {
 
         $event->delete();
     }
+
+    public function exists($id){
+        $event = Event::find($id);
+
+        return ($event==null)?false:true;
+    }
 }

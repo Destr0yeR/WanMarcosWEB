@@ -114,6 +114,19 @@ class EventController extends Controller
     public function show($id)
     {
         //
+        if(!$this->event_repository->exists($id)){
+            return response()->json([
+                'error' => [
+                    'message' => 'Invalid data',
+                    'reason' => [
+                        'event_id' => 'Event ID does not exist.'
+                    ],
+                    'suggestion' => 'Try again with valid data',
+                    'code' => 5,
+                    'description' => 'error_alert'
+                ]
+            ], 400);
+        }
 
         $event = $this->event_repository->getById($id);
 
