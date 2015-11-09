@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\API\Faculty;
+namespace App\Http\Controllers\API\Degree;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Repositories\FacultyRepository;
+use App\Repositories\DegreeRepository;
 
-use App\Http\Requests\API\Faculty\AutocompleteFacultiesRequest;
+use App\Http\Requests\API\Degree\AutocompleteDegreesRequest;
 
-class FacultyController extends Controller
+class DegreeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class FacultyController extends Controller
      * @return Response
      */
     public function __construct(){
-        $this->faculty_repository = new FacultyRepository;
+        $this->degree_repository = new DegreeRepository;
     }
 
     public function index()
@@ -93,7 +93,7 @@ class FacultyController extends Controller
         //
     }
 
-    public function autocomplete(AutocompleteFacultiesRequest $request){
+    public function autocomplete(AutocompleteDegreesRequest $request){
         $search_text = $request->input('search_text', '');
         $max_items   = $request->input('max_items', config('constants.autocomplete_items'));
 
