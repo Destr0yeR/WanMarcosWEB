@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\API\Event;
+namespace App\Services\API\Professor;
 
 use App\Services\Interfaces\Filterer;
 
@@ -21,7 +21,8 @@ class ProfessorFilterer implements Filterer{
     }
 
     private function filterByName($model, $name){
-        $model->where('name', 'LIKE', $name);
+        $model->where('first_name', 'LIKE', $name);
+        $model->orWhere('last_name', 'LIKE', $name);
 
         return $model;
     }

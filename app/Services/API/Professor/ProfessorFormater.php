@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\API\Event;
+namespace App\Services\API\Professor;
 
 use App\Services\Interfaces\Formater;
 
@@ -28,7 +28,7 @@ class ProfessorFormater implements Formater
         foreach ($professors as $professor) {
             $_events[] = [
                 'id'        => $professor->id,
-                'name'      => $professor->first_name.' '.$professor->last_name;
+                'name'      => $professor->first_name.' '.$professor->last_name
             ];
         }
 
@@ -38,10 +38,13 @@ class ProfessorFormater implements Formater
     public function formatItem($professor){
 
         $_professor = [
-            'id'            => $professor->id
+            'id'            => $professor->id,
             'first_name'    => $professor->first_name,
-            'last_name'     => $professor->last_name
+            'last_name'     => $professor->last_name,        
         ];
+
+        if($professor->image)$_professor['image'] = asset($professor->image);
+        else $_professor['image'] = null;
 
         return $_professor;
     }
