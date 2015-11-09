@@ -9,7 +9,6 @@ class EventFilterer implements Filterer{
     public function filter($model, $filters){
 
         $preferences = $filters['preferences'];
-
         $search_text = '%'.$filters['search_text'].'%';
 
         return $this->filterByName($model, $search_text);

@@ -26,6 +26,15 @@ class DateTimeService {
 
     public function convertDate($timestamp) {
         return new Carbon($timestamp);
+        $date = Carbon::now();
+        $date->timestamp = $timestamp;
+        return $date;
+    }
+
+    public function convertDateString($timestamp) {
+        $date = Carbon::now();
+        $date->timestamp = $timestamp;
+        return $date->toDateTimeString();
     }
 
     public function getDaysDifference($a, $b) {

@@ -13,6 +13,12 @@ class EventRepository {
         $this->filterer = new EventFilterer;
     }
 
+    public function paginated(){
+        $events = Event::paginate(config('constants.per_page'));
+
+        return $events;
+    }
+
     public function getById($id){
         $event = Event::find($id);
 
@@ -49,5 +55,19 @@ class EventRepository {
         if($event->information) $event->information = asset($event->information);
 
         return $event;
+    }
+
+    public function accept($id){
+        $event = Event::find($id);
+
+        $event->approved = 1;
+
+        $event->save();
+    }
+
+    public function refuse($id){
+        $event = Event::find($id);
+
+        $event->delete();
     }
 }
