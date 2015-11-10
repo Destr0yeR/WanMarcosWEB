@@ -58,20 +58,6 @@ class AuthController extends Controller
         $token = JWTAuth::getToken();
         $newToken = JWTAuth::refresh($token);
 
-        $data = [
-            'message'       => $token,
-            'enduser_id'    => 1
-        ];
-
-        $suggestion = $this->suggestion_repository->store($data);
-
-        $data = [
-            'message'       => $newToken,
-            'enduser_id'    => 1
-        ];
-
-        $suggestion = $this->suggestion_repository->store($data);
-
         return response()->json(['token' => $newToken]);
     }
 }
