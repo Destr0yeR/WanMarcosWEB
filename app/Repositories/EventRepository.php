@@ -19,6 +19,10 @@ class EventRepository {
         return $events;
     }
 
+    public function find($id){
+        return Event::find($id);
+    }
+
     public function getById($id){
         $event = Event::find($id);
 

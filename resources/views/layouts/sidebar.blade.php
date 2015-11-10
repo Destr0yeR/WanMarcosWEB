@@ -4,25 +4,28 @@
             <a href="#"><i class="fa fa-fw"></i>Usuarios</a>
         </li>
         <li>
-            <a href="#"><i class="fa fa-fw"></i>Eventos</a>
-        </li>
-        <li>
-            <a href="#"><i class="fa fa-fw"></i>Categorias</a>
+            <a href="#"><i class="fa fa-fw"></i>Lugares</a>
         </li>
         <li>
             <a href="#"><i class="fa fa-fw"></i>Docentes</a>
         </li>
         <li>
-            <a href="#"><i class="fa fa-fw"></i>Lugares</a>
+            <a href="{{ route('events.index') }}"><i class="fa fa-fw"></i>Eventos</a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-fw"></i>Categorias</a>
         </li>
         <li>
             <a href="#"><i class="fa fa-fw"></i>Facultades</a>
         </li>
         <li>
+            <a href="#"><i class="fa fa-fw"></i>Cursos</a>
+        </li>
+        <li>
             <a href="#"><i class="fa fa-fw"></i>Carreras</a>
         </li>
         <li>
-            <a href="#"><i class="fa fa-fw"></i>Mensajes</a>
+            <a href="#"><i class="fa fa-fw"></i>Comentarios</a>
         </li>
     </ul>
 </div>

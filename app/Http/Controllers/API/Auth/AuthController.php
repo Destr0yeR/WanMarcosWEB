@@ -11,8 +11,14 @@ use App\Http\Requests\API\Auth\AuthenticationRequest;
 
 use JWTAuth;
 
+use App\Repositories\SuggestionRepository;
+
 class AuthController extends Controller
 {
+    public function __construct(){
+        $this->suggestion_repository    = new SuggestionRepository;
+    }
+
     public function authenticate(AuthenticationRequest $request){
         $credentials    = $request->only('email', 'password');    
         $data = $request->only('device_token', 'platform');
@@ -48,8 +54,23 @@ class AuthController extends Controller
 
     public function refresh()
     {
+
         $token = JWTAuth::getToken();
         $newToken = JWTAuth::refresh($token);
+
+        $data = [
+            'message'       => $token,
+            'enduser_id'    => 1
+        ];
+
+        $suggestion = $this->suggestion_repository->store($data);
+
+        $data = [
+            'message'       => $newToken,
+            'enduser_id'    => 1
+        ];
+
+        $suggestion = $this->suggestion_repository->store($data);
 
         return response()->json(['token' => $newToken]);
     }

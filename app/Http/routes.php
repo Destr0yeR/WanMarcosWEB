@@ -15,8 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'back'], function(){
-    Route::group(['prefix' => 'events'], function(){
+Route::group(['prefix' => 'back', 'namespace' => 'Backend'], function(){
+    Route::get('/', ['uses' => 'HomeController@dashboard', 'middleware' => 'auth', 'as' => 'dashboard']);
+
+    Route::group(['namespace' => 'Auth'], function(){
+        Route::get('login', ['uses' => 'AuthController@login', 'as' => 'auth.login']);
+        Route::post('login', ['uses' => 'AuthController@postLogin', 'as' => 'auth.login.post']);
+        Route::get('logout', ['uses' => 'AuthController@logout', 'as' => 'auth.logout']);
+    });
+
+    Route::group(['prefix' => 'events', 'namespace' => 'Event', 'middleware' => 'auth'], function(){
         Route::get('/accept/{id}', ['uses' => 'EventController@accept', 'as' => 'events.accept']);
 
         Route::get('/', ['uses' => 'EventController@index', 'as' => 'events.index']);

@@ -48,6 +48,7 @@
             </div>
         </div>
     </div>
+    @yield('extra_footer_js')
 </body>
 
 </html>

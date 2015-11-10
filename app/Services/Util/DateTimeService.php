@@ -25,7 +25,6 @@ class DateTimeService {
     }
 
     public function convertDate($timestamp) {
-        return new Carbon($timestamp);
         $date = Carbon::now();
         $date->timestamp = $timestamp;
         return $date;
@@ -58,5 +57,9 @@ class DateTimeService {
     }
     public function getHoursTodayDifferenceTimestamp($a){
         return $this->getHoursDifference($this->today, $this->convertDate($a));
+    }
+
+    public function parse($str){
+        return Carbon::parse($str);
     }
 }

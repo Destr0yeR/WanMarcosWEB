@@ -25,6 +25,16 @@ class StoreEventRequest extends Request
     {
         return [
             //
+            'name'          => 'required',
+            'description'   => 'required',
+            'starts_at_date'=> 'required',
+            'starts_at_time'=> 'required',
+            'ends_at_date'  => 'required',
+            'ends_at_time'  => 'required'
         ];
+    }
+
+    public function response(array $errors){
+        return redirect()->back()->withInput()->withErrors($errors);
     }
 }

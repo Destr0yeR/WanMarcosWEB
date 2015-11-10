@@ -25,12 +25,11 @@
             <form role="form" accept=".pdf, image/*" enctype="application/x-www-form-urlencoded" autocomplete="off" action="{{ route('events.store') }}" method="POST">
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input class="form-control" type="text" name="name">
+                    <input class="form-control" type="text" name="name" value="{{ old('name') }}">
                 </div>
                 <div class="form-group">
                     <label>Descripción</label>
-                    <textarea class="form-control" rows="10" cols="80" name="description">
-                    </textarea>
+                    <textarea class="form-control" rows="10" cols="80" name="description">{{ old('description') }}</textarea>
                 </div>
                 <div class="form-group">
                     <label>Lugar</label>
@@ -51,19 +50,19 @@
                 </div>
                 <div class="form-group">
                     <label>Fecha de Inicio</label>
-                    <input class="form-control" type="text" name="starts_at">
+                    <input class="form-control" type="date" name="starts_at_date">
                 </div>
                 <div class="form-group">
                     <label>Hora de Inicio</label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="time" name="starts_at_time">
                 </div>
                 <div class="form-group">
                     <label>Fecha de Fin</label>
-                    <input class="form-control" type="text" name="ends_at">
+                    <input class="form-control" type="date" name="ends_at_date">
                 </div>
                 <div class="form-group">
                     <label>Hora de Fin</label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="time" name="ends_at_time">
                 </div>
                 <div class="form-group">
                     <label>Website</label>
@@ -81,5 +80,11 @@
             </form>
         </div>
     </div>
+    <script type="text/javascript">
+        $.datetimepicker.setLocale('en');
+    </script>
+@stop
 
+@section('extra_head_js')
+    <script src="{{ URL::asset('js/jquery.datetimepicker.min.js')}}"></script>
 @stop

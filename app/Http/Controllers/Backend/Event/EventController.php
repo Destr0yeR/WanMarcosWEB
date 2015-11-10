@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend\Event;
 
 use Illuminate\Http\Request;
 
@@ -17,11 +17,6 @@ use App\Http\Requests\Backend\Event\StoreEventRequest;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function __construct(){
         $this->event_repository     = new EventRepository;
         $this->place_repository     = new PlaceRepository;
@@ -68,6 +63,10 @@ class EventController extends Controller
     public function store(StoreEventRequest $request)
     {
         //
+        $starts_at  = $this->date_time_service->parse($request->input('starts_at_date').' '.$request->input('starts_at_time'))->timestamp;
+        $ends_at    = $this->date_time_service->parse($request->input('ends_at_date').' '.$request->input('ends_at_time'))->timestamp;
+        
+
         $information    = $request->file('information');
         $image          = $request->file('image');
 
@@ -86,8 +85,8 @@ class EventController extends Controller
         $data = [
             'name'          => $request->input('name'),
             'description'   => $request->input('description'),
-            'starts_at'     => $request->input('starts_at'),
-            'ends_at'       => $request->input('ends_at'),
+            'starts_at'     => $starts_at,
+            'ends_at'       => $ends_at,
             'website'       => $request->input('website', ''),
             'image'         => $image,
             'information'   => $information
@@ -111,7 +110,8 @@ class EventController extends Controller
     {
         //
         $data = [
-
+            'event'             => $this->event_repository->find($id),
+            'date_time_service' => $this->date_time_service
         ];
 
         return view('events.show', $data);
@@ -127,7 +127,8 @@ class EventController extends Controller
     {
         //
         $data = [
-
+            'event'             => $this->event_repository->find($id),
+            'date_time_service' => $this->date_time_service
         ];
 
         return view('events.edit', $data);
