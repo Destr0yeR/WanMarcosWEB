@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-    <form role="form" accept=".pdf, image/*" enctype="application/x-www-form-urlencoded" autocomplete="off" action="{{ route('events.update') }}" method="POST">
+    <form role="form" accept=".pdf, image/*" enctype="application/x-www-form-urlencoded" autocomplete="off" action="{{ route('events.update', $event->id) }}" method="POST">
         <div class="row">
             <div class="col-md-12">
                 <div class="top-title">
@@ -32,11 +32,37 @@
                 </div>
                 <div class="form-group">
                     <label>Lugar</label>
-                    <input type="text" name="place_id" class="form-control" value="@if($event->place) {{$event->place->name}} @else - @endif">
+                    <select name="place_id" class="form-control">
+                        @if($event->place) 
+                            <option value="0">Seleccione una opción</option> 
+                        @else
+                            <option value="0" selected>Seleccione una opción</option>
+                        @endif
+                        @foreach($places as $id => $name)
+                            @if($event->place_id == $id)
+                                <option value="$id" selected>$name</option>
+                            @else
+                                <option value="$id">$name</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Categoría</label>
-                    <input type="text" name="category_id" class="form-control" value="@if($event->category) {{$event->category->name}} @else - @endif">
+                    <select name="category_id" class="form-control">
+                        @if($event->category) 
+                            <option value="0">Seleccione una opción</option> 
+                        @else
+                            <option value="0" selected>Seleccione una opción</option>
+                        @endif
+                        @foreach($places as $id => $name)
+                            @if($event->category_id == $id)
+                                <option value="$id" selected>$name</option>
+                            @else
+                                <option value="$id">$name</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Fecha de Inicio</label>

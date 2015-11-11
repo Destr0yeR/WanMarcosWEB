@@ -41,6 +41,7 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label>Categoría</label>
                     <select name="category_id" class="form-control">
                         <option value="0">Seleccione una opción</option>
                         @foreach($categories as $id => $name)

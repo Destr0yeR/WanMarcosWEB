@@ -95,9 +95,9 @@ class EventController extends Controller
         if($place)$data['place_id'] = $place;
         if($category)$data['category_id'] = $category;
 
-        $response = $this->event_repository->store($data);
+        $event = $this->event_repository->store($data);
 
-        return redirect()->route('events.index');
+        return redirect()->route('events.show', $event->id);
     }
 
     /**
@@ -128,7 +128,9 @@ class EventController extends Controller
         //
         $data = [
             'event'             => $this->event_repository->find($id),
-            'date_time_service' => $this->date_time_service
+            'date_time_service' => $this->date_time_service,
+            'places'        => $this->place_repository->lists(),
+            'categories'    => $this->category_repository->lists()
         ];
 
         return view('events.edit', $data);
@@ -144,6 +146,40 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $starts_at  = $this->date_time_service->parse($request->input('starts_at_date').' '.$request->input('starts_at_time'))->timestamp;
+        $ends_at    = $this->date_time_service->parse($request->input('ends_at_date').' '.$request->input('ends_at_time'))->timestamp;
+        
+
+        $information    = $request->file('information');
+        $image          = $request->file('image');
+
+        if($information){
+            $information = $this->file_service->upload($information);
+        }
+        else $information = '';
+
+        if($image){
+            $image = $this->file_service->upload($image);
+        }
+        else $image = '';
+        $place      = $request->input('place_id', null);
+        $category   = $request->input('category_id', null);
+
+        $data = [
+            'name'          => $request->input('name'),
+            'description'   => $request->input('description'),
+            'starts_at'     => $starts_at,
+            'ends_at'       => $ends_at,
+            'website'       => $request->input('website', ''),
+            'image'         => $image,
+            'information'   => $information
+        ];
+
+        if($place)$data['place_id'] = $place;
+        if($category)$data['category_id'] = $category;
+
+        $event = $this->event_repository->update($id, $data);
+
         return redirect()->route('events.show', $id);
     }
 

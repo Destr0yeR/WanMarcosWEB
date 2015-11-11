@@ -61,6 +61,21 @@ class EventRepository {
         return $event;
     }
 
+    public function update($id, $data){
+        $event = Event::find($id);
+
+        foreach ($data as $key => $value) {
+            $event->$key = $value;
+        }
+
+        $event->save();
+
+        if($event->image)       $event->image       = asset($event->image);
+        if($event->information) $event->information = asset($event->information);
+
+        return $event;
+    }
+
     public function accept($id){
         $event = Event::find($id);
 

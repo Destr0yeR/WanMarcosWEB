@@ -25,7 +25,7 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($data)) {
-            return redirect()->intended('dashboard');
+            return redirect()->intended('/back');
         }
 
         return redirect()->back()->withErrors(['El Email y/o Password no son válidos.']);
