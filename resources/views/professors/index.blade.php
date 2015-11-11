@@ -16,8 +16,6 @@
             </h1>
         </div>
     </div>
-
-    <div id="map"></div>
     <div id="ajax-table">
     @include('professors.list')
     </div>

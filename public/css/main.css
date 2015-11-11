@@ -5,3 +5,7 @@
 .black_link:hover{
     color: #8B8B8B;
 }
+
+#map { 
+    height: 300px; 
+}

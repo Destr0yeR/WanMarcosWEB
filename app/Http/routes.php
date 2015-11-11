@@ -57,6 +57,16 @@ Route::group(['prefix' => 'back', 'namespace' => 'Backend'], function(){
         Route::get('/{id}', ['uses' => 'ProfessorController@show', 'as' => 'professors.show']);
     });
 
+    Route::group(['prefix' => 'places', 'namespace' => 'Place', 'middleware' => 'auth'], function(){
+        Route::get('/', ['uses' => 'PlaceController@index', 'as' => 'places.index']);
+        Route::get('/create', ['uses' => 'PlaceController@create', 'as' => 'places.create']);
+        Route::post('/create', ['uses' => 'PlaceController@store', 'as' => 'places.store']);
+        Route::get('/{id}/edit', ['uses' => 'PlaceController@edit', 'as' => 'places.edit']);
+        Route::post('/{id}/edit', ['uses' => 'PlaceController@update', 'as' => 'places.update']);
+        Route::post('/{id}/delete', ['uses' => 'PlaceController@destroy', 'as' => 'places.destroy']);
+        Route::get('/{id}', ['uses' => 'PlaceController@show', 'as' => 'places.show']);
+    });
+
 });
 
 Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){

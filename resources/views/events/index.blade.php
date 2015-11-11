@@ -17,7 +17,6 @@
         </div>
     </div>
 
-    <div id="map"></div>
     <div id="ajax-table">
     @include('events.list')
     </div>

@@ -13,7 +13,6 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ URL::asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{ URL::asset('css/responsive-tables.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ URL::asset('css/sb-admin.css')}}" rel="stylesheet">
 
@@ -30,9 +29,10 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ URL::asset('js/bootstrap.min.js')}}"></script>
 
-    <script src="{{ URL::asset('js/responsive-tables.js')}}"></script>
+    @yield('extra_head_js')
 
     <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
+    <script src="{{ asset('js/lib/webshim/polyfiller.js') }}"></script>
     <script>
         webshims.setOptions('forms-ext', {types: 'date'});
         webshims.polyfill('forms forms-ext');
@@ -46,8 +46,6 @@
         }
         };
     </script>
-
-    @yield('extra_head_js')
 
 </head>
 <body style="background-color:white">
