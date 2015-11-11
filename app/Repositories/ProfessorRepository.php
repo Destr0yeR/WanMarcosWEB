@@ -21,4 +21,46 @@ class ProfessorRepository {
 
         return $this->formater->format($events);
     }
+
+    public function find($id){
+        return Professor::find($id);
+    }
+
+    public function paginated(){
+        return Professor::paginate(config('constants.per_page'));
+    }
+
+    public function store($data){
+        $professor = new Professor;
+
+        foreach ($data as $key => $value) {
+            $professor->$key = $value;
+        }
+
+        $professor->save();
+
+        if($professor->image)$professor->image = asset($professor->image);
+        
+        return $professor;
+    }
+
+    public function update($id, $data){
+        $professor = Professor::find($id);
+
+        foreach ($data as $key => $value) {
+            $professor->$key = $value;
+        }
+
+        $professor->save();
+
+        if($professor->image)$professor->image = asset($professor->image);
+        
+        return $professor;
+    }
+
+    public function delete($id){
+        $professor = Professor::find($id);
+
+        $professor->delete();
+    }
 }

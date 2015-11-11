@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Category;
+namespace App\Http\Controllers\Backend\Professor;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Repositories\CategoryRepository;
+use App\Repositories\ProfessorRepository;
 
 use App\Services\Util\FileService;
 
-class CategoryController extends Controller
+class ProfessorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,19 +19,21 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->category_repository = new CategoryRepository;
+        $this->professor_repository = new ProfessorRepository;
 
         $this->file_service         = new FileService('backend');
     }
+
 
     public function index()
     {
         //
         $data = [
-            'categories' => $this->category_repository->paginated()
+            'professors' => $this->professor_repository->paginated()
         ];
 
-        return view('categories.index', $data);
+        return view('professors.index', $data);
+
     }
 
     /**
@@ -42,7 +44,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('categories.create');
+        return view('professors.create');
     }
 
     /**
@@ -54,18 +56,21 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $image = $request->file('image');
-
-        $image = $this->file_service->upload($image);
+        if($request->hasFile('image')){
+            $image = $this->file_service->upload($request->file('image'));
+        }
+        else $image = null;
 
         $data = [
-            'name'              => $request->input('name'),
-            'default_image_url' => $image
+            'first_name'    => $request->input('first_name'),
+            'last_name'     => $request->input('last_name'),
+            'email'         => $request->input('email'),
+            'image'         => $image
         ];
 
-        $category = $this->category_repository->store($data);
+        $professor = $this->professor_repository->store($data);
 
-        return redirect()->route('categories.show', $category->id);
+        return redirect()->route('professors.show', $professor->id);
     }
 
     /**
@@ -78,10 +83,10 @@ class CategoryController extends Controller
     {
         //
         $data = [
-            'category'             => $this->category_repository->find($id)
+            'professor' => $this->professor_repository->find($id),
         ];
 
-        return view('categories.show', $data);
+        return view('professors.show', $data);
     }
 
     /**
@@ -94,10 +99,10 @@ class CategoryController extends Controller
     {
         //
         $data = [
-            'category'             => $this->category_repository->find($id)
+            'professor' => $this->professor_repository->find($id),
         ];
 
-        return view('categories.edit', $data);
+        return view('professors.edit', $data);
     }
 
     /**
@@ -110,19 +115,24 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $data['name'] = $request->input('name');
-        
         if($request->hasFile('image')){
-            $image = $request->file('image');
-                
-            $image = $this->file_service->upload($image);
+            $image = $this->file_service->upload($request->file('image'));
+        }
+        else $image = null;
 
-            $data['default_image_url'] = $image;
+        $data = [
+            'first_name'    => $request->input('first_name'),
+            'last_name'     => $request->input('last_name'),
+            'email'         => $request->input('email')
+        ];
+
+        if($image){
+            $data['image']  = $image;
         }
 
-        $category = $this->category_repository->update($id, $data);
+        $professor = $this->professor_repository->update($id, $data);
 
-        return redirect()->route('categories.show', $category->id);
+        return redirect()->route('professors.show', $professor->id);
     }
 
     /**
@@ -134,7 +144,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
-        $this->category_repository->delete($id);
+        $this->professor_repository->delete($id);
 
         return redirect()->back();
     }

@@ -8,11 +8,11 @@
                 <div class="row">
                     <h1>
                         <div class="col-sm-8">
-                            Crear Evento
+                            Registrar Evento
                         </div>
                         <div class="col-sm-4">
                             <a href={{route('events.index')}} class="btn btn-primary">
-                                Back
+                                Atrás
                             </a>
                         </div>
                     </h1>
@@ -77,7 +77,7 @@
                     <label>Información extra</label>
                     <input class="file" type="file" accept=".pdf, image/*" name="information">
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg">Crear</button>
+                <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
             </form>
         </div>
     </div>

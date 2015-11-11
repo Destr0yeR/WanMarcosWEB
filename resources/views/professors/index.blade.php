@@ -6,11 +6,11 @@
         <div class="row">
             <h1>
                 <div class="col-sm-8">
-                    EVENTOS
+                    Docentes
                 </div>
                 <div class="col-sm-4">
-                    <a href={{route('events.create')}} class="btn btn-success">
-                        Registrar Nuevo Evento
+                    <a href={{route('professors.create')}} class="btn btn-success">
+                        Registrar Docente
                     </a>
                 </div>
             </h1>
@@ -19,7 +19,7 @@
 
     <div id="map"></div>
     <div id="ajax-table">
-    @include('events.list')
+    @include('professors.list')
     </div>
 
 @stop

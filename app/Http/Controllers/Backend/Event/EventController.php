@@ -201,7 +201,7 @@ class EventController extends Controller
         //
         $this->event_repository->refuse($id);
 
-        return redirect()->route('events.index');
+        return redirect()->back();
     }
 
     public function accept($id){

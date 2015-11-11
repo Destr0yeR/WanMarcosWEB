@@ -7,7 +7,7 @@
             <a href="#"><i class="fa fa-fw"></i>Lugares</a>
         </li>
         <li>
-            <a href="#"><i class="fa fa-fw"></i>Docentes</a>
+            <a href="{{ route('professors.index') }}"><i class="fa fa-fw"></i>Docentes</a>
         </li>
         <li>
             <a href="{{ route('events.index') }}"><i class="fa fa-fw"></i>Eventos</a>

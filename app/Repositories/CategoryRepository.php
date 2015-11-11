@@ -50,4 +50,10 @@ class CategoryRepository {
 
         return $category;
     }
+
+    public function delete($id){
+        $category = Category::find($id);
+
+        $category->delete();
+    }
 }

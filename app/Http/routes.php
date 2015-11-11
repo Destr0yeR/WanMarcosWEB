@@ -47,6 +47,16 @@ Route::group(['prefix' => 'back', 'namespace' => 'Backend'], function(){
         Route::get('/{id}', ['uses' => 'CategoryController@show', 'as' => 'categories.show']);
     });
 
+    Route::group(['prefix' => 'professors', 'namespace' => 'Professor', 'middleware' => 'auth'], function(){
+        Route::get('/', ['uses' => 'ProfessorController@index', 'as' => 'professors.index']);
+        Route::get('/create', ['uses' => 'ProfessorController@create', 'as' => 'professors.create']);
+        Route::post('/create', ['uses' => 'ProfessorController@store', 'as' => 'professors.store']);
+        Route::get('/{id}/edit', ['uses' => 'ProfessorController@edit', 'as' => 'professors.edit']);
+        Route::post('/{id}/edit', ['uses' => 'ProfessorController@update', 'as' => 'professors.update']);
+        Route::post('/{id}/delete', ['uses' => 'ProfessorController@destroy', 'as' => 'professors.destroy']);
+        Route::get('/{id}', ['uses' => 'ProfessorController@show', 'as' => 'professors.show']);
+    });
+
 });
 
 Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){

@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-sm-4">
                     <a href={{route('categories.create')}} class="btn btn-success">
-                        Crear una Nueva Categoría
+                        Registrar Nueva Categoría
                     </a>
                 </div>
             </h1>
