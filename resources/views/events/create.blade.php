@@ -22,21 +22,21 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <form role="form" accept=".pdf, image/*" enctype="application/x-www-form-urlencoded" autocomplete="off" action="{{ route('events.store') }}" method="POST">
+            <form role="form" accept=".pdf, image/*" enctype="multipart/form-data" autocomplete="off" action="{{ route('events.store') }}" method="POST">
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input class="form-control" type="text" name="name" value="{{ old('name') }}">
+                    <input class="form-control" type="text" name="name" value="{{ old('name') }}" required>
                 </div>
                 <div class="form-group">
                     <label>Descripción</label>
-                    <textarea class="form-control" rows="10" cols="80" name="description">{{ old('description') }}</textarea>
+                    <textarea class="form-control" rows="10" cols="80" name="description" required>{{ old('description') }}</textarea>
                 </div>
                 <div class="form-group">
                     <label>Lugar</label>
                     <select name="place_id" class="form-control">
                         <option value="0">Seleccione una opción</option>
                         @foreach($places as $id => $name)
-                        <option value="$id">$name</option>
+                        <option value="{{ $id }}">{{ $name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -45,25 +45,25 @@
                     <select name="category_id" class="form-control">
                         <option value="0">Seleccione una opción</option>
                         @foreach($categories as $id => $name)
-                        <option value="$id">$name</option>
+                        <option value="{{ $id }}">{{ $name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Fecha de Inicio</label>
-                    <input class="form-control" type="date" name="starts_at_date">
+                    <input class="form-control" type="date" name="starts_at_date" required>
                 </div>
                 <div class="form-group">
                     <label>Hora de Inicio</label>
-                    <input class="form-control" type="time" name="starts_at_time">
+                    <input class="form-control" type="time" name="starts_at_time" required>
                 </div>
                 <div class="form-group">
                     <label>Fecha de Fin</label>
-                    <input class="form-control" type="date" name="ends_at_date">
+                    <input class="form-control" type="date" name="ends_at_date" required>
                 </div>
                 <div class="form-group">
                     <label>Hora de Fin</label>
-                    <input class="form-control" type="time" name="ends_at_time">
+                    <input class="form-control" type="time" name="ends_at_time" required>
                 </div>
                 <div class="form-group">
                     <label>Website</label>

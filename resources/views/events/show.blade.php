@@ -12,7 +12,7 @@
                         </div>
                         <div class="col-sm-4">
                             <a href="{{ route('events.edit', $event->id) }}" class="btn btn-primary btn-lg">
-                                Edit
+                                Editar
                             </a>
                         </div>
                     </h1>
@@ -60,7 +60,9 @@
             </div>
             <div class="form-group">
                 <label>Imagen</label>
-                @if($event->image){{ asset($event->image) }} @else Not Found @endif
+            </div>
+            <div class="form-group">
+                <img src="{{ asset($event->image) }}">
             </div>
             <div class="form-group">
                 <label>Información extra</label>

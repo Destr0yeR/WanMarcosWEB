@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-    <form role="form" accept=".pdf, image/*" enctype="application/x-www-form-urlencoded" autocomplete="off" action="{{ route('events.update', $event->id) }}" method="POST">
+    <form role="form" accept=".pdf, image/*" enctype="multipart/form-data" autocomplete="off" action="{{ route('events.update', $event->id) }}" method="POST">
         <div class="row">
             <div class="col-md-12">
                 <div class="top-title">
@@ -12,7 +12,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <button type="submit" class="btn btn-primary btn-lg">
-                                    Save Changes
+                                    Guardar Cambios
                                 </button>
                             </div>
                         </h1>
@@ -40,9 +40,9 @@
                         @endif
                         @foreach($places as $id => $name)
                             @if($event->place_id == $id)
-                                <option value="$id" selected>$name</option>
+                                <option value="{{ $id }}" selected>{{ $name }}</option>
                             @else
-                                <option value="$id">$name</option>
+                                <option value="{{ $id }}">{{ $name }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -55,11 +55,11 @@
                         @else
                             <option value="0" selected>Seleccione una opción</option>
                         @endif
-                        @foreach($places as $id => $name)
+                        @foreach($categories as $id => $name)
                             @if($event->category_id == $id)
-                                <option value="$id" selected>$name</option>
+                                <option value="{{ $id }}" selected>{{ $name }}</option>
                             @else
-                                <option value="$id">$name</option>
+                                <option value="{{ $id }}">{{ $name }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -86,11 +86,11 @@
                 </div>
                 <div class="form-group">
                     <label>Imagen</label>
-                    @if($event->image){{ asset($event->image) }} @else Not Found @endif
+                    <input class="file" type="file" accept="image/*" name="image">
                 </div>
                 <div class="form-group">
                     <label>Información extra</label>
-                    @if($event->information){{ asset($event->information) }} @else Not Found @endif
+                    <input class="file" type="file" accept=".pdf, image/*" name="information">
                 </div>
             
             </div>

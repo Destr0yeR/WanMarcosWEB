@@ -37,6 +37,15 @@ Route::group(['prefix' => 'back', 'namespace' => 'Backend'], function(){
         Route::get('/{id}', ['uses' => 'EventController@show', 'as' => 'events.show']);
     });
 
+    Route::group(['prefix' => 'categories', 'namespace' => 'Category', 'middleware' => 'auth'], function(){
+        Route::get('/', ['uses' => 'CategoryController@index', 'as' => 'categories.index']);
+        Route::get('/create', ['uses' => 'CategoryController@create', 'as' => 'categories.create']);
+        Route::post('/create', ['uses' => 'CategoryController@store', 'as' => 'categories.store']);
+        Route::get('/{id}/edit', ['uses' => 'CategoryController@edit', 'as' => 'categories.edit']);
+        Route::post('/{id}/edit', ['uses' => 'CategoryController@update', 'as' => 'categories.update']);
+        Route::post('/{id}/delete', ['uses' => 'CategoryController@destroy', 'as' => 'categories.destroy']);
+        Route::get('/{id}', ['uses' => 'CategoryController@show', 'as' => 'categories.show']);
+    });
 
 });
 

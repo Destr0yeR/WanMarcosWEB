@@ -17,6 +17,8 @@ use App\Http\Requests\Backend\Event\StoreEventRequest;
 
 use App\Services\Notification\ContactUserAboutEventNotifier;
 
+use App\Services\Util\FileService;
+
 class EventController extends Controller
 {
     public function __construct(){
@@ -26,6 +28,7 @@ class EventController extends Controller
         $this->date_time_service    = new DateTimeService;
 
         $this->contact_notifier     = new ContactUserAboutEventNotifier;
+        $this->file_service         = new FileService('backend');
     }
 
     public function index(Request $request)
@@ -160,12 +163,12 @@ class EventController extends Controller
         if($information){
             $information = $this->file_service->upload($information);
         }
-        else $information = '';
+        else $information = null;
 
         if($image){
             $image = $this->file_service->upload($image);
         }
-        else $image = '';
+        else $image = null;
         $place      = $request->input('place_id', null);
         $category   = $request->input('category_id', null);
 

@@ -13,7 +13,7 @@
             <a href="{{ route('events.index') }}"><i class="fa fa-fw"></i>Eventos</a>
         </li>
         <li>
-            <a href="#"><i class="fa fa-fw"></i>Categorias</a>
+            <a href="{{ route('categories.index') }}"><i class="fa fa-fw"></i>Categorias</a>
         </li>
         <li>
             <a href="#"><i class="fa fa-fw"></i>Facultades</a>
