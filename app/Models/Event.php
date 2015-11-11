@@ -10,4 +10,8 @@ class Event extends Model {
     public function place(){
         return $this->belongsTo('App\Models\Place');
     }
+
+    public function user(){
+        return $this->belongsTo('App\Models\EndUser', 'enduser_id', 'id');
+    }
 }

@@ -15,6 +15,8 @@ use App\Services\Util\DateTimeService;
 
 use App\Http\Requests\Backend\Event\StoreEventRequest;
 
+use App\Services\Notification\ContactUserAboutEventNotifier;
+
 class EventController extends Controller
 {
     public function __construct(){
@@ -22,6 +24,8 @@ class EventController extends Controller
         $this->place_repository     = new PlaceRepository;
         $this->category_repository  = new CategoryRepository;
         $this->date_time_service    = new DateTimeService;
+
+        $this->contact_notifier     = new ContactUserAboutEventNotifier;
     }
 
     public function index(Request $request)
@@ -199,6 +203,18 @@ class EventController extends Controller
 
     public function accept($id){
         $this->event_repository->accept($id);
+
+        return redirect()->back();
+    }
+
+    public function contact(Request $request, $id){
+        $user = $this->event_repository->getUserFromEvent($id);
+        
+        if($user){
+            $message = $request->input('message');
+
+            $this->contact_notifier->notify($user, $message);
+        }
 
         return redirect()->back();
     }

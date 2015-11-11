@@ -26,6 +26,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'Backend'], function(){
 
     Route::group(['prefix' => 'events', 'namespace' => 'Event', 'middleware' => 'auth'], function(){
         Route::get('/accept/{id}', ['uses' => 'EventController@accept', 'as' => 'events.accept']);
+        Route::post('/contact/{id}', ['uses' => 'EventController@contact', 'as' => 'events.contact']);
 
         Route::get('/', ['uses' => 'EventController@index', 'as' => 'events.index']);
         Route::get('/create', ['uses' => 'EventController@create', 'as' => 'events.create']);

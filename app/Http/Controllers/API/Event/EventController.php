@@ -15,6 +15,7 @@ use App\Http\Requests\API\Event\AutocompleteEventsRequest;
 use App\Http\Requests\API\Event\StoreEventRequest;
 
 use App\Services\Util\FileService;
+use App\Services\API\Auth\AuthService;
 
 class EventController extends Controller
 {
@@ -29,6 +30,7 @@ class EventController extends Controller
         $this->user_repository  = new EndUserRepository;
 
         $this->file_service = new FileService;
+        $this->auth_service = new AuthService;
     }
 
     public function index(GetEventsRequest $request)
@@ -94,7 +96,8 @@ class EventController extends Controller
             'ends_at'       => $request->input('ends_at'),
             'website'       => $request->input('website', ''),
             'image'         => $image,
-            'information'   => $information
+            'information'   => $information,
+            'enduser_id'    => $this->auth_service->getUser()->id
         ];
 
         if($place)$data['place_id'] = $place;

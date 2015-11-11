@@ -95,4 +95,8 @@ class EventRepository {
 
         return ($event==null)?false:true;
     }
+
+    public function getUserFromEvent($id){
+        return Event::find($id)->user;
+    }
 }

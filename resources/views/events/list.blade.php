@@ -28,7 +28,11 @@
                         <a id="delete {{$event->id}}"class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{$event->id}}" href="">Rechazar</a>
                     </td>
                     <td>
-                        <a class="btn btn-default"> Contactar </a>
+                        @if($event->user) 
+                          <a class="btn btn-default" data-toggle="modal" data-target="#contactModal{{$event->id}}"> Contactar </a> 
+                        @else
+                          <a class="btn btn-default disabled" > No disponible </a> 
+                        @endif
                     </td>
                 </tr>
                 <!-- Delete Modal-->
@@ -36,17 +40,45 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <button type="button" class="close-modal-button" data-dismiss="modal" aria-label="Close">
-                            <img src="{{url('/').'/img/signusup-close.png'}}" id="close-modal-button-img">
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">CONFIRM DELETE</h4>
+                        <h4 class="modal-title">Confirmar Rechazo</h4>
                       </div>
+                      <div class="modal-body">
+                        <p>¿Está seguro de rechazar este evento?
+                        </p>
+                      </div>         
                       <div class="modal-footer">
                         <form method="post" action={{route('events.destroy', $event->id)}}>
-                            <button type="button" class="cancel-button-delete-modal" data-dismiss="modal">NO, CANCEL DELETE</button>
-                            <button type="submit" class="confirm-button-delete-modal">YES, DELETE EVENT</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">No, Cerrar</button>
+                            <button type="submit" class="btn btn-danger">Sí, Rechazar evento</button>
                         </form>
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="contactModal{{$event->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <form method="post" action="{{route('events.contact', $event->id)}}" id="contact{{$event->id}}">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Contactar</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group">
+                              <label>Mensaje</label>
+                              <textarea class="form-control" name="message" required></textarea>
+                          </div>
+                        </div>         
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-danger" id="send-contact{{$event->id}}">Enviar</button>                      
+                        </div>
+                      </form>
+                      <script type="text/javascript">
+                        $("#contact{{$event->id}}").submit(function () {
+                            $("#send-contact{{$event->id}}").attr("disabled", true);
+                            return true;
+                        });
+                      </script>
                     </div>
                   </div>
                 </div>
