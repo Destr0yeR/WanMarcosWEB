@@ -66,10 +66,14 @@ class EventFormater implements Formater
             'ends_at'   => $event->ends_at
         ];
 
-        if($event->image != ''){
+        if($event->image){
             $_event['image'] = asset($event->image);
         }
-        else $_event['image'] = null;
+        else if($event->category){
+            if($event->category->image)$_event['image'] = asset($event->category->image);
+            else $_event['image'] = asset(config('constants.default_event_image'));
+        }
+        else $_event['image'] = asset(config('constants.default_event_image'));
 
         return $_event;
     }

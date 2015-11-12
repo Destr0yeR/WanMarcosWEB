@@ -35,7 +35,7 @@ class StoreSuggestionRequest extends Request
                 'message'       => 'Invalid data',
                 'reason'        => $errors,
                 'suggestion'    => 'Try again with valid data',
-                'code'          => 3,
+                'code'          => 6,
                 'description'   => 'error_alert'
             ]
         ], 400);

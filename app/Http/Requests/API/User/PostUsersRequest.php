@@ -40,7 +40,7 @@ class PostUsersRequest extends Request
                 'message' => 'Invalid data',
                 'reason' => $errors,
                 'suggestion' => 'Try again with valid data',
-                'code' => 2,
+                'code' => 4,
                 'description' => 'error_alert'
                 ]
         ], 400);

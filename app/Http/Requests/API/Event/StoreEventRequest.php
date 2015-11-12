@@ -38,7 +38,7 @@ class StoreEventRequest extends Request
                 'message' => 'Invalid data',
                 'reason' => $errors,
                 'suggestion' => 'Try again with valid data',
-                'code' => 4,
+                'code' => 5,
                 'description' => 'error_alert'
                 ]
         ], 400);

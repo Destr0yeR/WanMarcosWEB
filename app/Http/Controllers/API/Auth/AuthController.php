@@ -43,7 +43,7 @@ class AuthController extends Controller
                         'message' => $e->getMessage(),
                         'reason' => 'Something went wrong whilst attempting to encode the token',
                         'suggestion' => 'Try again',
-                        'code' => 1,
+                        'code' => 3,
                         'description' => 'error_alert'
                     ]
                 ], 500);
