@@ -87,6 +87,15 @@ Route::group(['prefix' => 'back', 'namespace' => 'Backend'], function(){
         Route::get('/{id}', ['uses' => 'FacultyController@show', 'as' => 'faculties.show']);
     });
 
+    Route::group(['prefix' => 'suggestions', 'namespace' => 'Suggestion', 'middleware' => 'auth'], function(){
+        Route::get('/', ['uses' => 'SuggestionController@index', 'as' => 'suggestions.index']);
+        Route::get('/create', ['uses' => 'SuggestionController@create', 'as' => 'suggestions.create']);
+        Route::post('/create', ['uses' => 'SuggestionController@store', 'as' => 'suggestions.store']);
+        Route::get('/{id}/edit', ['uses' => 'SuggestionController@edit', 'as' => 'suggestions.edit']);
+        Route::post('/{id}/edit', ['uses' => 'SuggestionController@update', 'as' => 'suggestions.update']);
+        Route::post('/{id}/delete', ['uses' => 'SuggestionController@destroy', 'as' => 'suggestions.destroy']);
+        Route::get('/{id}', ['uses' => 'SuggestionController@show', 'as' => 'suggestions.show']);
+    });
 });
 
 Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
