@@ -70,7 +70,7 @@ class EventFormater implements Formater
             $_event['image'] = asset($event->image);
         }
         else if($event->category){
-            if($event->category->image)$_event['image'] = asset($event->category->image);
+            if($event->category->default_image_url)$_event['image'] = asset($event->category->default_image_url);
             else $_event['image'] = asset(config('constants.default_event_image'));
         }
         else $_event['image'] = asset(config('constants.default_event_image'));
