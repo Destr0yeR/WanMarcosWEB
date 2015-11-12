@@ -20,4 +20,42 @@ class DegreeRepository {
         
         return $this->formater->formatAutocomplete($events);
     }
+
+    public function paginated(){
+        return Degree::paginate(config('constants.per_page'));
+    }
+
+    public function store($data){
+        $degree = new Degree;
+
+        foreach ($data as $key => $value) {
+            $degree->$key = $value;
+        }
+
+        $degree->save();
+
+        return $degree;
+    }
+
+    public function find($id){
+        return Degree::find($id);
+    }
+
+    public function update($id, $data){
+        $degree = Degree::find($id);
+
+        foreach ($data as $key => $value) {
+            $degree->$key = $value;
+        }
+
+        $degree->save();
+
+        return $degree;
+    }
+
+    public function delete($id){
+        $degree = Degree::find($id);
+
+        $degree->delete();
+    }
 }

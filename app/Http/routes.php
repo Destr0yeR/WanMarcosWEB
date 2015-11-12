@@ -67,6 +67,26 @@ Route::group(['prefix' => 'back', 'namespace' => 'Backend'], function(){
         Route::get('/{id}', ['uses' => 'PlaceController@show', 'as' => 'places.show']);
     });
 
+    Route::group(['prefix' => 'degrees', 'namespace' => 'Degree', 'middleware' => 'auth'], function(){
+        Route::get('/', ['uses' => 'DegreeController@index', 'as' => 'degrees.index']);
+        Route::get('/create', ['uses' => 'DegreeController@create', 'as' => 'degrees.create']);
+        Route::post('/create', ['uses' => 'DegreeController@store', 'as' => 'degrees.store']);
+        Route::get('/{id}/edit', ['uses' => 'DegreeController@edit', 'as' => 'degrees.edit']);
+        Route::post('/{id}/edit', ['uses' => 'DegreeController@update', 'as' => 'degrees.update']);
+        Route::post('/{id}/delete', ['uses' => 'DegreeController@destroy', 'as' => 'degrees.destroy']);
+        Route::get('/{id}', ['uses' => 'DegreeController@show', 'as' => 'degrees.show']);
+    });
+
+    Route::group(['prefix' => 'faculties', 'namespace' => 'Faculty', 'middleware' => 'auth'], function(){
+        Route::get('/', ['uses' => 'FacultyController@index', 'as' => 'faculties.index']);
+        Route::get('/create', ['uses' => 'FacultyController@create', 'as' => 'faculties.create']);
+        Route::post('/create', ['uses' => 'FacultyController@store', 'as' => 'faculties.store']);
+        Route::get('/{id}/edit', ['uses' => 'FacultyController@edit', 'as' => 'faculties.edit']);
+        Route::post('/{id}/edit', ['uses' => 'FacultyController@update', 'as' => 'faculties.update']);
+        Route::post('/{id}/delete', ['uses' => 'FacultyController@destroy', 'as' => 'faculties.destroy']);
+        Route::get('/{id}', ['uses' => 'FacultyController@show', 'as' => 'faculties.show']);
+    });
+
 });
 
 Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){

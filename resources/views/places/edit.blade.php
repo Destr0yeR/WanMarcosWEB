@@ -41,7 +41,6 @@
                     <label>Imagen</label>
                     <input class="file" type="file" accept="image/*" name="image">
                 </div>
-            </form>
             </div>
         </div>
     </form>

@@ -12,10 +12,10 @@
                 <div class="row">
                     <h1>
                         <div class="col-sm-8">
-                            Registrar Lugar
+                            Registrar Carrera
                         </div>
                         <div class="col-sm-4">
-                            <a href={{route('places.index')}} class="btn btn-primary">
+                            <a href={{route('degrees.index')}} class="btn btn-primary">
                                 Atrás
                             </a>
                         </div>
@@ -25,22 +25,21 @@
         </div>
     </div>
     <div class="row">
-        <form accept="image/*" enctype="multipart/form-data" autocomplete="off" action="{{ route('places.store') }}" method="POST">
+        <form accept="image/*" enctype="multipart/form-data" autocomplete="off" action="{{ route('degrees.store') }}" method="POST">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Nombre</label>
                     <input class="form-control" type="text" name="name" value="{{ old('name') }}" required>
                 </div>
-            </div>
-            <div class="col-md-9">
-                <div class="col-md-12">
-                    <div id="map"></div>
-                    <input type="hidden" name="latitude" id="latitude" value="{!!old('latitude')!!}">
-                    <input type="hidden" name="longitude" id="longitude" value="{!!old('longitude')!!}">
-                </div>
+
                 <div class="form-group">
-                    <label>Imagen</label>
-                    <input class="file" type="file" accept="image/*" name="image" required>
+                    <label>Facultad</label>
+                    <select name="faculty_id" class="form-control">
+                        <option value="0">Seleccione una opción</option>
+                        @foreach($faculties as $id => $name)
+                            <option value="{{ $id }}">{{ $name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
             </div>

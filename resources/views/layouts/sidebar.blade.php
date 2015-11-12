@@ -16,13 +16,13 @@
             <a href="{{ route('categories.index') }}"><i class="fa fa-fw"></i>Categorias</a>
         </li>
         <li>
-            <a href="#"><i class="fa fa-fw"></i>Facultades</a>
+            <a href="{{ route('faculties.index') }}"><i class="fa fa-fw"></i>Facultades</a>
         </li>
         <li>
             <a href="#"><i class="fa fa-fw"></i>Cursos</a>
         </li>
         <li>
-            <a href="#"><i class="fa fa-fw"></i>Carreras</a>
+            <a href="{{ route('degrees.index') }}"><i class="fa fa-fw"></i>Carreras</a>
         </li>
         <li>
             <a href="#"><i class="fa fa-fw"></i>Comentarios</a>
