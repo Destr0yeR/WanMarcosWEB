@@ -2,7 +2,7 @@
         <thead>
             <tr>
                 <th>Mensaje</th>
-                <th>Usario</th>
+                <th>Usuario</th>
                 <th></th>
             </tr>
         </thead>
@@ -15,14 +15,14 @@
                         {{$suggestion->user->first_name}} {{$suggestion->user->last_name}}
                     </td>
                     <td>
-                    <a href="{{ route('faculties.show', $faculty->id) }}" class="btn btn-primary">Ver detalle</a>
+                    <a href="{{ route('faculties.show', $suggestion->id) }}" class="btn btn-primary">Ver detalle</a>
                     </td>
                     <td>  
-                        <a id="delete {{$faculty->id}}"class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{$faculty->id}}" href="">Eliminar</a>
+                        <a id="delete {{$suggestion->id}}"class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{$suggestion->id}}" href="">Eliminar</a>
                     </td>
                 </tr>
                 <!-- Delete Modal-->
-                <div class="modal fade" id="deleteModal{{$faculty->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="deleteModal{{$suggestion->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -33,7 +33,7 @@
                         </p>
                       </div>         
                       <div class="modal-footer">
-                        <form method="post" action={{route('suggestion.destroy', $faculty->id)}}>
+                        <form method="post" action={{route('suggestions.destroy', $suggestion->id)}}>
                             <button type="button" class="btn btn-primary" data-dismiss="modal">No, Cerrar</button>
                             <button type="submit" class="btn btn-danger">Sí, Eliminar sugerencia</button>
                         </form>

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backen\Suggestion;
+namespace App\Http\Controllers\Backend\Suggestion;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use App\Repositories\SuggestionRepository;
 
 class SuggestionController extends Controller
 {
@@ -14,9 +16,19 @@ class SuggestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->suggestion_repository = new SuggestionRepository;
+    }
+
     public function index()
     {
         //
+        $data = [
+            'suggestions' => $this->suggestion_repository->paginated()
+        ];
+
+        return view('suggestions.index', $data);
     }
 
     /**
@@ -83,5 +95,8 @@ class SuggestionController extends Controller
     public function destroy($id)
     {
         //
+        $this->suggestion_repository->delete($id);
+
+        return back();
     }
 }

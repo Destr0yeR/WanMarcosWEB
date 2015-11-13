@@ -9,6 +9,10 @@ class SuggestionRepository {
         
     }
 
+    public function paginated(){
+        return Suggestion::paginate(config('constants.per_page'));
+    }
+
     public function store($data){
         $suggestion = new Suggestion;
 
@@ -19,5 +23,11 @@ class SuggestionRepository {
         $suggestion->save();
 
         return $suggestion;
+    }
+
+    public function delete($id){
+        $suggestion = Suggestion::find($id);
+
+        $suggestion->delete();
     }
 }

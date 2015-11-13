@@ -32,9 +32,9 @@ class StoreSuggestionRequest extends Request
     public function response(array $errors){
         return response()->json([
             'error' => [
-                'message'       => 'Invalid data',
+                'message'       => 'Datos inválidos.',
                 'reason'        => $errors,
-                'suggestion'    => 'Try again with valid data',
+                'suggestion'    => 'Intenta nuevamente con datos válidos.',
                 'code'          => 6,
                 'description'   => 'error_alert'
             ]

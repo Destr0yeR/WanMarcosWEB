@@ -28,9 +28,9 @@ class AuthController extends Controller
             return response()->json(
             [
                 'error' => [
-                        'message' => 'Invalid credentials. Please try again.',
-                        'reason' => 'Invalid email or password',
-                        'suggestion' => 'Write valid credentials',
+                        'message' => 'Credenciales inválidas. Por favor, intenta de nuevo.',
+                        'reason' => 'Email y/o contraseña inválidos.',
+                        'suggestion' => 'Escribre crendenciales válidas.',
                         'code' => 2,
                         'description' => 'error_alert'
                     ]
@@ -41,8 +41,8 @@ class AuthController extends Controller
                 [
                     'error' => [
                         'message' => $e->getMessage(),
-                        'reason' => 'Something went wrong whilst attempting to encode the token',
-                        'suggestion' => 'Try again',
+                        'reason' => 'Algo salió mal al intentar codificar el token.',
+                        'suggestion' => 'Intenta nuevamente.',
                         'code' => 3,
                         'description' => 'error_alert'
                     ]

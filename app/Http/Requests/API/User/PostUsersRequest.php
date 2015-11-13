@@ -37,9 +37,9 @@ class PostUsersRequest extends Request
     {
         return response()->json([
             'error' => [
-                'message' => 'Invalid data',
+                'message' => 'Datos inválidos.',
                 'reason' => $errors,
-                'suggestion' => 'Try again with valid data',
+                'suggestion' => 'Intenta nuevamente con datos válidos.',
                 'code' => 4,
                 'description' => 'error_alert'
                 ]

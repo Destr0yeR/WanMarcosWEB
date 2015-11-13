@@ -35,9 +35,9 @@ class AuthenticationRequest extends Request
     public function response(array $errors){
         return response()->json([
             'error' => [
-                'message'       => 'Invalid data',
+                'message'       => 'Datos inválidos',
                 'reason'        => $errors,
-                'suggestion'    => 'Write valid credentials',
+                'suggestion'    => 'Escribe credenciales válidas',
                 'code'          => 1,
                 'description'   => 'error_alert'
             ]
