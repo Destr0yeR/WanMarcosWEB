@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Repositories\CategoryRepository;
+
 class CategoryController extends Controller
 {
     /**
@@ -14,6 +16,10 @@ class CategoryController extends Controller
      *
      * @return Response
      */
+    public function __construct(){
+        $this->category_repository = new CategoryRepository;
+    }
+
     public function index()
     {
         //
@@ -85,14 +91,14 @@ class CategoryController extends Controller
         //
     }
 
-    public function autocomplete(){
+    public function autocomplete(Request $request){
         $search_text = $request->input('search_text', '');
         $max_items   = $request->input('max_items', config('constants.autocomplete_items'));
 
-        $events = $this->event_repository->getAutocomplete($search_text, $max_items);
+        $categories = $this->category_repository->getAutocomplete($search_text, $max_items);
 
         $response = [
-            'events'    => $events
+            'categories'    => $categories
         ];
 
         return response()->json($response, 200);

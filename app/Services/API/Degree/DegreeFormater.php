@@ -20,7 +20,7 @@ class DegreeFormater implements Formater
         
     }
 
-    public function formatAutocomplete($degree){
+    public function formatAutocomplete($degrees){
         $_degrees = [];
 
         foreach ($degrees as $degree) {

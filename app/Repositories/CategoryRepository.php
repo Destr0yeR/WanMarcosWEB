@@ -4,9 +4,13 @@ namespace App\Repositories;
 
 use App\Models\Category;
 
+use App\Services\API\Category\CategoryFormater;
+use App\Services\API\Category\CategoryFilterer;
+
 class CategoryRepository {
     public function __construct() {
-        
+        $this->formater = new CategoryFormater;
+        $this->filterer = new CategoryFilterer;
     }
 
     public function lists(){
@@ -55,5 +59,13 @@ class CategoryRepository {
         $category = Category::find($id);
 
         $category->delete();
+    }
+
+    public function getAutocomplete($search_text, $max_items){
+        $model = Category::distinct();
+
+        $events = $this->filterer->filterAutocomplete($model, $search_text)->take($max_items)->get();
+        
+        return $this->formater->formatAutocomplete($events);
     }
 }

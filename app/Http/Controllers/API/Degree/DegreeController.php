@@ -97,10 +97,10 @@ class DegreeController extends Controller
         $search_text = $request->input('search_text', '');
         $max_items   = $request->input('max_items', config('constants.autocomplete_items'));
 
-        $faculties = $this->faculty_repository->getAutocomplete($search_text, $max_items);
+        $degrees = $this->degree_repository->getAutocomplete($search_text, $max_items);
 
         $response = [
-            'faculties'    => $faculties
+            'degrees'    => $degrees
         ];
 
         return response()->json($response, 200);
