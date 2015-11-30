@@ -37,15 +37,33 @@ class ProfessorFormater implements Formater
 
     public function formatItem($professor){
 
+        $subjects   = $this->formatSubjects($professor->subjects);
+        $score      = $professor->reviews()->avg('score');
+
         $_professor = [
             'id'            => $professor->id,
             'first_name'    => $professor->first_name,
-            'last_name'     => $professor->last_name,        
+            'last_name'     => $professor->last_name,
+            'subjects'      => $subjects,
+            'score'         => $score
         ];
 
         if($professor->image)$_professor['image'] = asset($professor->image);
         else $_professor['image'] = null;
 
         return $_professor;
+    }
+
+    private function formatSubjects($subjects){
+        $_subjects = [];
+
+        foreach ($subjects as $subject) {
+            $_subjects[] = [
+                'id'    => $subject->id,
+                'name'  => $subject->name
+            ];
+        }
+
+        return $_subjects;
     }
 }

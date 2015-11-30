@@ -77,6 +77,23 @@ class ProfessorController extends Controller
     public function show($id)
     {
         //
+        if(!$this->professor_repository->exists($id)){
+            return response()->json([
+                'error' => [
+                    'message' => 'Invalid data',
+                    'reason' => [
+                        'event_id' => 'Event ID does not exist.'
+                    ],
+                    'suggestion' => 'Try again with valid data',
+                    'code' => 5,
+                    'description' => 'error_alert'
+                ]
+            ], 400);
+        }
+
+        $professor = $this->professor_repository->getById($id);
+
+        return response()->json($professor);
     }
 
     /**

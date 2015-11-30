@@ -51,7 +51,7 @@ class HomeController extends Controller
 
         $user = JWTAuth::toUser($token);
 
-        $user->password = $request->input('password');
+        $user->password = bcrypt($request->input('password'));
         $user->save();
 
         return back()->withErrors(['Password cambiado satisfactoriamente']);

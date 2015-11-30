@@ -63,4 +63,14 @@ class ProfessorRepository {
 
         $professor->delete();
     }
+
+    public function exists($id){
+        return (Professor::find($id)==null)?false:true;
+    }
+
+    public function getById($id){
+        $professor = Professor::find($id);
+
+        return $this->formater->formatDetail($professor);
+    }
 }
