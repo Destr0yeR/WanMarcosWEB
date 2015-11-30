@@ -4,9 +4,13 @@ namespace App\Repositories;
 
 use App\Models\Place;
 
+use App\Services\API\Place\PlaceFormater;
+use App\Services\API\Place\PlaceFilterer;
+
 class PlaceRepository {
     public function __construct() {
-        
+        $this->formater = new PlaceFormater;
+        $this->filterer = new PlaceFilterer;
     }
 
     public function find($id){
@@ -53,5 +57,13 @@ class PlaceRepository {
         $place = Place::find($id);
 
         $place->delete();
+    }
+
+    public function getAutocomplete($search_text, $max_items){
+        $model = Place::distinct();
+
+        $events = $this->filterer->filterAutocomplete($model, $search_text)->take($max_items)->get();
+        
+        return $this->formater->formatAutocomplete($events);
     }
 }

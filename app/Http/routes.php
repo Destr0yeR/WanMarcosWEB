@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/forgot', ['uses' => 'Backend\HomeController@getForgot']);
+Route::post('/forgot', ['uses' => 'Backend\HomeController@postForgot' , 'as' => 'forgot.password']);
+
+Route::get('/recover/{token}', ['uses' => 'Backend\HomeController@getRecover']);
+Route::post('/recover/{token}', ['uses' => 'Backend\HomeController@postRecover', 'as' => 'recover.password']);
+
 Route::group(['prefix' => 'back', 'namespace' => 'Backend'], function(){
     Route::get('/', ['uses' => 'HomeController@dashboard', 'middleware' => 'auth', 'as' => 'dashboard']);
 
@@ -117,6 +123,9 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
             Route::get('events', 'Event\EventController@autocomplete');
             Route::get('degrees', 'Degree\DegreeController@autocomplete');
             Route::get('faculties', 'Faculty\FacultyController@autocomplete');
+
+            Route::get('categories', 'Category\CategoryController@autocomplete');
+            Route::get('places', 'Place\PlaceController@autocomplete');
         });
     });
 

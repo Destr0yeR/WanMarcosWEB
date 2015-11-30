@@ -23,16 +23,16 @@ class ProfessorFormater implements Formater
     }
 
     public function formatAutocomplete($professors){
-        $_events = [];
+        $_professors = [];
 
         foreach ($professors as $professor) {
-            $_events[] = [
+            $_professors[] = [
                 'id'        => $professor->id,
                 'name'      => $professor->first_name.' '.$professor->last_name
             ];
         }
 
-        return $_events;
+        return $_professors;
     }
 
     public function formatItem($professor){

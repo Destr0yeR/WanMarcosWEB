@@ -84,4 +84,17 @@ class CategoryController extends Controller
     {
         //
     }
+
+    public function autocomplete(){
+        $search_text = $request->input('search_text', '');
+        $max_items   = $request->input('max_items', config('constants.autocomplete_items'));
+
+        $events = $this->event_repository->getAutocomplete($search_text, $max_items);
+
+        $response = [
+            'events'    => $events
+        ];
+
+        return response()->json($response, 200);
+    }
 }

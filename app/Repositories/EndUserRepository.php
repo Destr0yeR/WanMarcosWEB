@@ -45,4 +45,8 @@ class EndUserRepository{
 
         return $user;
     }
+
+    public function getByEmail($email){
+        return EndUser::where('email', $email)->first();
+    }
 }
