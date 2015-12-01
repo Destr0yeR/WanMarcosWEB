@@ -137,6 +137,18 @@ class UserController extends Controller
         return response()->json($user);
     }
 
+    public function updateProfile(Request $request){
+        $data = [];
+
+        $faculty_id = $request->input('faculty_id', null);
+        if($faculty_id)$data['faculty_id'] = $faculty_id;
+
+        $degree_id = $request->input('degree_id', null);
+        if($degree_id)$data['degree_id'] = $degree_id;
+
+        return response()->json(['user' => $this->user_repository->update($data)]);
+    }
+
     public function image(Request $request){
         $image = $request->file('image');
 
