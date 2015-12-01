@@ -29,6 +29,18 @@ class EndUserRepository{
         return $user;
     }
 
+    public function update($data){
+        $user = $this->auth_service->getUser();
+
+        foreach ($data as $key => $value) {
+            $user->$key = $value;
+        }
+
+        $user->save();
+
+        return $user;
+    }
+
     public function getPreferences(){
         $user = $this->auth_service->getUser();
 
@@ -48,5 +60,9 @@ class EndUserRepository{
 
     public function getByEmail($email){
         return EndUser::where('email', $email)->first();
+    }
+
+    public function changeImage($image){
+
     }
 }

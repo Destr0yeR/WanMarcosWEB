@@ -28,7 +28,7 @@
                         @endif
                     </div>
                     <div class="text-center">
-                        <a href="#" class="links">FORGOT PASSWORD</a>
+                        
                     </div>
                 </div>
             </div>

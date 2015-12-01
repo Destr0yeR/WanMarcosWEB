@@ -15,6 +15,7 @@ use App\Services\Notification\VerificationMailNotifier;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
 
+use App\Services\Util\FileService;
 
 class UserController extends Controller
 {
@@ -26,6 +27,8 @@ class UserController extends Controller
     public function __construct(){
         $this->user_repository              = new EndUserRepository;
         $this->verification_mail_notifier   = new VerificationMailNotifier;
+
+        $this->file_service = new FileService;
     }
 
     public function index()
@@ -132,5 +135,17 @@ class UserController extends Controller
         $user = $this->user_repository->getAuthenticatedUser();
 
         return response()->json($user);
+    }
+
+    public function image(Request $request){
+        $image = $request->file('image');
+
+        $image = $this->file_service->upload($image);
+
+        $data = [
+            'image' => $image
+        ];
+
+        return response()->json(['user' => $this->user_repository->update($data)]);
     }
 }
