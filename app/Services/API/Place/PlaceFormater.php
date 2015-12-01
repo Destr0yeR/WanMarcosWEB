@@ -35,7 +35,7 @@ class PlaceFormater implements Formater
         return $_places;
     }
 
-    public function formatItem($places){
+    public function formatItem($place){
 
         $_place = [
             'id'            => $place->id,
@@ -44,7 +44,7 @@ class PlaceFormater implements Formater
             'longitude'     => $place->longitude     
         ];
 
-        if($places->image)$_place['image'] = asset($places->image);
+        if($place->image)$_place['image'] = asset($place->image);
         else $_place['image'] = null;
 
         return $_place;

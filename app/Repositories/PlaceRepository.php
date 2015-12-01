@@ -66,4 +66,13 @@ class PlaceRepository {
         
         return $this->formater->formatAutocomplete($events);
     }
+
+    public function getAllPaginated($filters, $page, $per_page){
+        $model = Place::distinct();
+
+        $skip = ($page-1)*$per_page;
+        $events = $this->filterer->filter($model, $filters)->skip($skip)->take($per_page)->get();
+
+        return $this->formater->format($events);
+    }
 }

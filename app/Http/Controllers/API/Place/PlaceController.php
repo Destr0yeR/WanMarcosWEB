@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Repositories\PlaceRepository;
+use App\Repositories\EndUserRepository;
 
 class PlaceController extends Controller
 {
@@ -18,11 +19,29 @@ class PlaceController extends Controller
      */
     public function __construct(){
         $this->place_repository = new PlaceRepository;
+        $this->user_repository  = new EndUserRepository;
     }
 
     public function index()
     {
         //
+        $preferences = $this->user_repository->getPreferences();
+
+        $filters = [
+            'preferences'   => $preferences,
+            'search_text'   => $request->input('search_text', '')
+        ];
+
+        $page       = $request->input('page', 1);
+        $per_page   = $request->input('per_page', config('constants.per_page'));
+
+        $professors = $this->place_repository->getAllPaginated($filters, $page, $per_page);
+
+        $response = [
+            'professors'    => $professors
+        ];
+
+        return response()->json($response, 200);
     }
 
     /**
