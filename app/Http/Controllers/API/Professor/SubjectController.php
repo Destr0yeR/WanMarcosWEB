@@ -117,8 +117,8 @@ class SubjectController extends Controller
             'subject_id'    => $request->input('subject_id')
         ];
 
-        $page       = $request->input('page');
-        $per_page   = $request->input('per_page');
+        $page       = $request->input('page', 1);
+        $per_page   = $request->input('per_page', config('constants.per_page'));
 
         $comments = $this->comment_repository->getAllPaginated($data, $page, $per_page);
 

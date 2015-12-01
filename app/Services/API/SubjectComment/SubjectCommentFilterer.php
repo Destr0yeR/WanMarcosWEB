@@ -8,9 +8,10 @@ class SubjectCommentFilterer implements Filterer{
 
     public function filter($model, $filters = []){
 
-        $professor_id = $filters['professor_id'];
+        $professor_id   = $filters['professor_id'];
+        $subject_id     = $filters['subject_id'];
 
-        return $this->filterByName($model, $professor_id);
+        return $model->where('professor_id', $professor_id)->where('subject_id', $subject_id);
     }
 
     public function filterAutocomplete($model, $search_text){

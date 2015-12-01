@@ -149,6 +149,7 @@ return [
          * Packages Service Provider
          */
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        'Intervention\Image\ImageServiceProvider'
     ],
 
     /*
@@ -200,6 +201,7 @@ return [
 
         'JWTAuth'       => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory'    => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Image' => 'Intervention\Image\Facades\Image'
     ],
 
 ];

@@ -6,14 +6,14 @@ use App\Services\Interfaces\Formater;
 
 class SubjectCommentFormater implements Formater
 {
-    public function format($subjects, $data = []){
-        $_subjects = [];
+    public function format($comments, $data = []){
+        $_comments = [];
 
-        foreach ($subjects as $subject) {
-            $_subjects[] = $this->formatItem($subject, $data);
+        foreach ($comments as $comment) {
+            $_comments[] = $this->formatItem($comment, $data);
         }
 
-        return $_subjects;
+        return $_comments;
     }
 
     public function formatDetail($subject, $data = []){
@@ -35,21 +35,15 @@ class SubjectCommentFormater implements Formater
         return $_subjects;
     }
 
-    public function formatItem($subject, $data = []){
-
-
-        if(array_key_exists('professor_id', $data))$professor_id = $data['professor_id'];
-        else $professor_id = 0;
-
-        $score      = $subject->reviews()->where('professor_id', $professor_id)->avg('score');
-
-        $_subject = [
+    public function formatItem($comment, $data = []){
+        
+        $_comment = [
             'id'            => $subject->id,
             'name'          => $subject->name,
             'score'         => $score,
             'professor_id'  => $professor_id
         ];
 
-        return $_subject;
+        return $_comment;
     }
 }

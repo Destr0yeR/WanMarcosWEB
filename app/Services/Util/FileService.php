@@ -6,6 +6,8 @@ use Config;
 use App\Services\API\Auth\AuthService;
 use App\Services\Backend\Auth\AuthService as _AuthService;
 
+use Image;
+
 class FileService {
 
     public function __construct($auth = 'api'){
@@ -25,6 +27,15 @@ class FileService {
         $extension = $file->getClientOriginalExtension();
         $file_path = $name.'.'.$extension;
         $file->move($upload_path, $file_path);
+
+        $img = Image::make($upload_path.'/'.$file_path);
+        
+        $img->resize(null, 400, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+
+        $img->save($upload_path.'/'.$file_path);
 
         return $upload_path.'/'.$file_path;
     }
