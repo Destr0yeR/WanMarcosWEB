@@ -38,10 +38,14 @@ class SubjectCommentFormater implements Formater
     public function formatItem($comment, $data = []){
         
         $_comment = [
-            'id'            => $subject->id,
-            'name'          => $subject->name,
-            'score'         => $score,
-            'professor_id'  => $professor_id
+            'id'       => $comment->id,
+            'user'     => [
+                'id'            => $comment->user->id,
+                'first_name'    => $comment->user->first_name,
+                'last_name'     => $comment->user->last_name
+            ],
+            'score'    => $comment->score,
+            'message'  => $comment->message
         ];
 
         return $_comment;

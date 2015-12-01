@@ -28,9 +28,7 @@ class PlaceFormater implements Formater
         foreach ($places as $place) {
             $_places[] = [
                 'id'        => $place->id,
-                'name'      => $place->name,
-                'latitude'      => $place->latitude,
-                'longitude'     => $place->longitude  
+                'name'      => $place->name 
             ];
         }
 
