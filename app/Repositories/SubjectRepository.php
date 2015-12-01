@@ -15,7 +15,15 @@ class SubjectRepository {
 
     public function getById($id, $data = []){
 
-        $subject = Subject::find($id);
+        $subject = Subject::where('id', $id);
+
+        if(array_key_exists('professor_id', $data)){
+            $subject = $subject->whereHas('professors', function($q)use($data){
+                $q->where('professor_id', $data['professor_id']);
+            });
+        }
+
+        $subject = $subject->first();
 
         return $this->formater->formatDetail($subject, $data);
     }
