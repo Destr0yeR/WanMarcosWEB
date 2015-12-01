@@ -25,6 +25,8 @@ class SubjectRepository {
 
         $subject = $subject->first();
 
+        if(!$subject)return [];
+
         return $this->formater->formatDetail($subject, $data);
     }
 
