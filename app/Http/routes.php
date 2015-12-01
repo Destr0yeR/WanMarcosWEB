@@ -117,6 +117,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
         Route::post('refresh', 'Auth\AuthController@refresh');
 
         Route::resource('professors', 'Professor\ProfessorController');
+        Route::resource('subjects', 'Professor\SubjectController');
         Route::resource('events', 'Event\EventController');
 
         Route::group(['prefix' => 'autocomplete'], function(){
