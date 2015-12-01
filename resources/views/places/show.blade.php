@@ -11,7 +11,7 @@
                 <div class="row">
                     <h1>
                         <div class="col-sm-8">
-                            Registrar Lugar
+                            Ver detalle de Lugar
                         </div>
                         <div class="col-sm-4">
                             <a href={{route('places.edit', $place->id)}} class="btn btn-primary">
@@ -39,9 +39,13 @@
             <div class="form-group">
                 <label>Imagen</label>
             </div>
+            @if($place->image)
             <div class="form-group">
-                <img src="{{ asset($place->image) }}">
+                <img src="{{ asset($place->image) }}" width="300" height="300">
             </div>
+            @else
+                Image not found
+            @endif
         </form>
         </div>
     </div>

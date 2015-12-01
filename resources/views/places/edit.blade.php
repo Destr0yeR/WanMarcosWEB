@@ -12,7 +12,7 @@
                     <div class="row">
                         <h1>
                             <div class="col-sm-8">
-                                Registrar Lugar
+                                Editar información de Lugar
                             </div>
                             <div class="col-sm-4">
                                 <button class="btn btn-primary">
