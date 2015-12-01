@@ -107,6 +107,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'Backend'], function(){
 Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
     Route::group(['prefix' => 'v1'], function(){
 
+        Route::post('users/image', 'User\UserController@image');
         Route::get('users/me', 'User\UserController@profile');
         Route::get('users/verify/{token?}', 'User\UserController@verify');
 
