@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Repositories\SubjectRepository;
+use App\Repositories\SubjectCommentRepository;
 
 class SubjectController extends Controller
 {
@@ -18,6 +19,7 @@ class SubjectController extends Controller
      */
     public function __construct(){
         $this->subject_repository = new SubjectRepository;
+        $this->comment_repository = new SubjectCommentRepository;
     }
 
     public function index(Request $request)
@@ -107,5 +109,19 @@ class SubjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function comments(Request $request){
+        $data = [
+            'professor_id'  => $request->input('professor_id'),
+            'subject_id'    => $request->input('subject_id')
+        ];
+
+        $page       = $request->input('page');
+        $per_page   = $request->input('per_page');
+
+        $comments = $this->comment_repository->getAllPaginated($data, $page, $per_page);
+
+        return response()->json(['comments' => $comments]);
     }
 }

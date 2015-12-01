@@ -120,6 +120,8 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
         Route::resource('subjects', 'Professor\SubjectController');
         Route::resource('events', 'Event\EventController');
 
+        Route::get('comments', 'Professor\SubjectController@comments');
+        
         Route::group(['prefix' => 'autocomplete'], function(){
             Route::get('events', 'Event\EventController@autocomplete');
             Route::get('degrees', 'Degree\DegreeController@autocomplete');
@@ -127,6 +129,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
 
             Route::get('categories', 'Category\CategoryController@autocomplete');
             Route::get('places', 'Place\PlaceController@autocomplete');
+
         });
     });
 
