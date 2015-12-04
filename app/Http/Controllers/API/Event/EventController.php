@@ -78,7 +78,7 @@ class EventController extends Controller
         $image          = $request->file('image');
 
         if($information){
-            $information = $this->file_service->upload($information);
+            $information = $this->file_service->upload($information, 'info');
         }
         else $information = null;
 
