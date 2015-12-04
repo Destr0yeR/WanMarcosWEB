@@ -28,21 +28,21 @@ class HomeController extends Controller
     {
         //
         $page       = $request->input('page', 1);
-        $per_page   = $request->input('per_page', 1);
+        $per_page   = $request->input('per_page', config('constants.per_page_home'));
 
         $filters = [
             'preferences'   => [],
             'search_text'   => $request->input('search_text', '')
         ];
 
-        $event      = $this->event_repository->getAllPaginated($filters, $page, $per_page);
-        $professor  = $this->professor_repository->getAllPaginated($filters, $page, $per_page);
-        $place      = $this->place_repository->getAllPaginated($filters, $page, $per_page);
+        $events      = $this->event_repository->getAllPaginated($filters, $page, $per_page);
+        $professors  = $this->professor_repository->getAllPaginated($filters, $page, $per_page);
+        $places      = $this->place_repository->getAllPaginated($filters, $page, $per_page);
 
         $response = [
-            'event'     => (array_key_exists(0, $event))?$event[0]:null,
-            'professor' => (array_key_exists(0, $professor))?$professor[0]:null,
-            'place'     => (array_key_exists(0, $place))?$place[0]:null,
+            'events'     => $events,
+            'professors' => $professors,
+            'places'     => $places
         ];
 
         return response()->json($response);

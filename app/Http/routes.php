@@ -123,6 +123,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
         Route::resource('events', 'Event\EventController');
         Route::resource('home', 'Home\HomeController');
 
+        Route::post('comments', 'Professor\SubjectController@review');
         Route::get('comments', 'Professor\SubjectController@comments');
         
         Route::group(['prefix' => 'autocomplete'], function(){
