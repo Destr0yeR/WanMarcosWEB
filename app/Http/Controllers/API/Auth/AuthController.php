@@ -29,7 +29,9 @@ class AuthController extends Controller
             [
                 'error' => [
                         'message' => 'Credenciales inválidas. Por favor, intenta de nuevo.',
-                        'reason' => 'Email y/o contraseña inválidos.',
+                        'reason' => [
+				'Email y/o contraseña inválidos.',
+			],
                         'suggestion' => 'Escribre crendenciales válidas.',
                         'code' => 2,
                         'description' => 'error_alert'
@@ -41,7 +43,7 @@ class AuthController extends Controller
                 [
                     'error' => [
                         'message' => $e->getMessage(),
-                        'reason' => 'Algo salió mal al intentar codificar el token.',
+                        'reason' => ['Algo salió mal al intentar codificar el token.',],
                         'suggestion' => 'Intenta nuevamente.',
                         'code' => 3,
                         'description' => 'error_alert'

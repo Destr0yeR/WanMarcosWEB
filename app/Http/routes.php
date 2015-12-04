@@ -122,6 +122,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
         Route::resource('subjects', 'Professor\SubjectController');
         Route::resource('events', 'Event\EventController');
         Route::resource('home', 'Home\HomeController');
+	Route::resource('places', 'Place\PlaceController');
 
         Route::get('comments', 'Professor\SubjectController@comments');
         
