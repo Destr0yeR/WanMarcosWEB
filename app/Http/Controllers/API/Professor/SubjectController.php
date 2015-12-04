@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use App\Repositories\SubjectRepository;
 use App\Repositories\SubjectCommentRepository;
 
+use App\Services\API\Auth\AuthService;
+
 class SubjectController extends Controller
 {
     /**
@@ -20,6 +22,7 @@ class SubjectController extends Controller
     public function __construct(){
         $this->subject_repository = new SubjectRepository;
         $this->comment_repository = new SubjectCommentRepository;
+        $this->auth_service       = new AuthService;
     }
 
     public function index(Request $request)
@@ -109,6 +112,22 @@ class SubjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function review(Request $request){
+        $user = $this->auth_service->getUser();
+
+        $data = [
+            'subject_id'    => $request->input('subject_id'),
+            'professor_id'  => $request->input('professor_id'),
+            'score'         => $request->input('score'),
+            'message'       => $request->input('message'),
+            'enduser_id'    => $user->id
+        ];
+
+        $review = $this->comment_repository->store($data);
+
+        return response()->json($review);
     }
 
     public function comments(Request $request){

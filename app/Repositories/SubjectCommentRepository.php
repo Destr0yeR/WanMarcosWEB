@@ -22,4 +22,16 @@ class SubjectCommentRepository {
 
         return $this->formater->format($events);
     }
+
+    public function store($data){
+        $review = new ReviewSubject;
+
+        foreach ($data as $key => $value) {
+            $review->$key = $value;
+        }
+
+        $review->save();
+
+        return $review;
+    }
 }

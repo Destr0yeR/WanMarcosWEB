@@ -42,7 +42,8 @@ class SubjectCommentFormater implements Formater
             'user'     => [
                 'id'            => $comment->user->id,
                 'first_name'    => $comment->user->first_name,
-                'last_name'     => $comment->user->last_name
+                'last_name'     => $comment->user->last_name,
+                'image'         => $comment->user->image
             ],
             'score'    => $comment->score,
             'message'  => $comment->message

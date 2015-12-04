@@ -124,6 +124,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'api'], function(){
         Route::resource('home', 'Home\HomeController');
 	Route::resource('places', 'Place\PlaceController');
 
+        Route::post('comments', 'Professor\SubjectController@review');
         Route::get('comments', 'Professor\SubjectController@comments');
         
         Route::group(['prefix' => 'autocomplete'], function(){
