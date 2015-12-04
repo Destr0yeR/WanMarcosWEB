@@ -21,6 +21,7 @@ class FileService {
     public function upload($file){
 
         $name = $this->date_time_service->getDateTime().'_'.$this->auth_service->getUser()->id;
+        $name = str_replace(' ', '', $name);
 
         $upload_path = Config::get('paths.upload_image');
 
