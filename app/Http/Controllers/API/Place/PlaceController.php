@@ -22,7 +22,7 @@ class PlaceController extends Controller
         $this->user_repository  = new EndUserRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         //
         $preferences = $this->user_repository->getPreferences();
@@ -35,10 +35,10 @@ class PlaceController extends Controller
         $page       = $request->input('page', 1);
         $per_page   = $request->input('per_page', config('constants.per_page'));
 
-        $professors = $this->place_repository->getAllPaginated($filters, $page, $per_page);
+        $places = $this->place_repository->getAllPaginated($filters, $page, $per_page);
 
         $response = [
-            'professors'    => $professors
+            'places'    => $places
         ];
 
         return response()->json($response, 200);
